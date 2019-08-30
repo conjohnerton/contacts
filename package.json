@@ -1,0 +1,19 @@
+{
+  "name": "contacts",
+  "version": "1.0.0",
+  "description": "I CANT SEE! WHERE ARE MY CONTACTS!",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnnycheadshot/contacts.git"
+  },
+  "author": "Heba, Scott, William, Yoannier, John",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/johnnycheadshot/contacts/issues"
+  },
+  "homepage": "https://github.com/johnnycheadshot/contacts#readme"
+}
