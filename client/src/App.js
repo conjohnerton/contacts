@@ -5,6 +5,7 @@ import {
 	Item,
 	Label,
 	Input,
+	Grid,
 	Sidebar,
 	Segment,
 	Icon,
@@ -62,15 +63,16 @@ class MenuExampleVertical extends Component {
 
 function App() {
 	const [visible, setVisible] = useState(false);
+	const [activePage, setActivePage] = useState("home");
 
 	return (
 		<div className="App">
 			<Container>
 				<MenuExampleVertical />
-				<Menu>
-					<Item>One</Item>
-					<Item>Two</Item>
-					<Item>Three</Item>
+				<Menu secondary>
+					<Menu.Item name="home" onClick={() => "a"} />
+					<Menu.Item />
+					<Menu.Item />
 				</Menu>
 			</Container>
 		</div>
