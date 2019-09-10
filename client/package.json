@@ -6,7 +6,10 @@
 		"react": "^16.9.0",
 		"react-dom": "^16.9.0",
 		"react-scripts": "3.1.1",
-		"semantic-ui-react": "^0.88.0"
+		"semantic-ui-react": "^0.88.0",
+		"@craco/craco": "^5.4.0",
+		"@semantic-ui-react/craco-less": "^1.1.0",
+		"semantic-ui-less": "^2.4.1"
 	},
 	"scripts": {
 		"start": "craco start",
@@ -29,9 +32,5 @@
 			"last 1 safari version"
 		]
 	},
-	"devDependencies": {
-		"@craco/craco": "^5.4.0",
-		"@semantic-ui-react/craco-less": "^1.1.0",
-		"semantic-ui-less": "^2.4.1"
-	}
+	"devDependencies": {}
 }
