@@ -1,27 +1,26 @@
-import React, { Component, useState } from "react";
-import {
-	Container,
-	Menu,
-	Item,
-	Label,
-	Input,
-	Grid,
-	Sidebar,
-	Segment,
-	Icon,
-	Button,
-	Modal,
-	Header,
-	Image
-} from "semantic-ui-react";
-import LoginForm from "./components/LoginForm";
-import "./styles/App.css";
+import React from 'react';
+import logo from './logo.svg';
+import './App.css';
 
 function App() {
-	const [visible, setVisible] = useState(false);
-	const [activePage, setActivePage] = useState("home");
-
-	return <div className="App"></div>;
+  return (
+    <div className="App">
+      <header className="App-header">
+        <img src={logo} className="App-logo" alt="logo" />
+        <p>
+          Edit <code>src/App.js</code> and save to reload.
+        </p>
+        <a
+          className="App-link"
+          href="https://reactjs.org"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Learn React
+        </a>
+      </header>
+    </div>
+  );
 }
 
 export default App;
