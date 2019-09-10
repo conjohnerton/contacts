@@ -4,8 +4,7 @@
 	"description": "I CANT SEE! WHERE ARE MY CONTACTS!",
 	"main": "server.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "cd client && npm start"
+		"test": "echo \"Error: no test specified\" && exit 1"
 	},
 	"repository": {
 		"type": "git",
