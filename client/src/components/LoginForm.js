@@ -10,6 +10,7 @@ import {
 	Segment
 } from "semantic-ui-react";
 import useForm from "../customHooks/useForm";
+import "../styles/Form.css";
 import contactImg from "../assets/512px_contact_logo.png";
 
 // uses a custom hook to implement form functions
@@ -28,14 +29,17 @@ const LoginForm = () => {
 			style={{ height: "100vh" }}
 			verticalAlign="middle"
 		>
-			<Grid.Column style={{ maxWidth: 450 }}>
+			<Grid.Column style={{ maxWidth: 450 }} className="Form">
 				<Header as="h2" color="blue" textAlign="center">
-					{/* <Image style={{ padding: ".3em" }} src={contactImg} /> */}
+					{/* <Image style={{ padding: ".4em" }} src={contactImg} /> */}
 					Log-in to your account
 				</Header>
 
 				<Form size="large" onSubmit={handleSubmit}>
 					<Segment stacked>
+						<Header textAlign="left" color="black" sub>
+							Email
+						</Header>
 						<Form.Input
 							fluid
 							icon="user"
@@ -45,6 +49,9 @@ const LoginForm = () => {
 							name="email"
 							onChange={handleChange}
 						/>
+						<Header textAlign="left" color="black" sub>
+							Password
+						</Header>
 						<Form.Input
 							fluid
 							icon="lock"

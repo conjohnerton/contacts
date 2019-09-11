@@ -1,0 +1,6 @@
+.Form {
+	-webkit-box-shadow: 6px 7px 17px 5px rgba(0, 0, 0, 0.34);
+	-moz-box-shadow: 6px 7px 17px 5px rgba(0, 0, 0, 0.34);
+	box-shadow: 6px 7px 17px 5px rgba(0, 0, 0, 0.34);
+	border-radius: 10px;
+}

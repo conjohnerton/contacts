@@ -9,6 +9,7 @@ import {
 	Message,
 	Segment
 } from "semantic-ui-react";
+import "../styles/Form.css";
 import useForm from "../customHooks/useForm";
 
 const SignUpForm = () => {
@@ -34,7 +35,7 @@ const SignUpForm = () => {
 			style={{ height: "100vh" }}
 			verticalAlign="middle"
 		>
-			<Grid.Column style={{ maxWidth: 450 }}>
+			<Grid.Column style={{ maxWidth: 450 }} className="Form">
 				<Header as="h2" color="blue" textAlign="center">
 					Create a new account
 				</Header>
@@ -82,7 +83,7 @@ const SignUpForm = () => {
 							fluid
 							icon="protect"
 							iconPosition="left"
-							placeholder="Repeat Password"
+							placeholder="Verify Password"
 							name="passwordVerify"
 							type="password"
 							onChange={handleChange}
