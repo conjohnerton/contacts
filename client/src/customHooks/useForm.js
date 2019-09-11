@@ -8,7 +8,10 @@ const useForm = (callback) => {
 		if (event) {
 			event.preventDefault();
 		}
+
+		// use callback and reset values
 		callback();
+		setValues({});
 	};
 
 	// passes previous input in and only changes the input that was altered

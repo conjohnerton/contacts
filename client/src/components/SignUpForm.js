@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	Button,
@@ -11,12 +11,22 @@ import {
 } from "semantic-ui-react";
 import useForm from "../customHooks/useForm";
 
-// TODO: validate same password entry before submission
-
 const SignUpForm = () => {
 	const { values, handleSubmit, handleChange } = useForm(() =>
 		console.log(values)
 	);
+	const [err, setErr] = useState(false);
+
+	// checks if passwords match and submits, if not generates a warning message
+	const checkPasswordMatch = (event) => {
+		if (values.password !== values.passwordVerify) {
+			// sets err to render the message
+			setErr(true);
+			return;
+		}
+
+		handleSubmit(event);
+	};
 
 	return (
 		<Grid
@@ -29,8 +39,11 @@ const SignUpForm = () => {
 					Create a new account
 				</Header>
 
-				<Form size="large" onSubmit={handleSubmit}>
+				<Form size="large" onSubmit={checkPasswordMatch}>
 					<Segment stacked>
+						<Header textAlign="left" color="black" sub>
+							Email
+						</Header>
 						<Form.Input
 							fluid
 							icon="mail"
@@ -40,6 +53,18 @@ const SignUpForm = () => {
 							name="email"
 							onChange={handleChange}
 						/>
+						{/* err renders only on password mismatch */}
+						{err ? (
+							<Message
+								negative
+								content="The input passwords do not match"
+							/>
+						) : (
+							""
+						)}
+						<Header textAlign="left" color="black" sub>
+							Password
+						</Header>
 						<Form.Input
 							fluid
 							icon="lock"
@@ -48,7 +73,11 @@ const SignUpForm = () => {
 							name="password"
 							type="password"
 							onChange={handleChange}
+							error={err}
 						/>
+						<Header textAlign="left" color="black" sub>
+							Repeat Password
+						</Header>
 						<Form.Input
 							fluid
 							icon="protect"
@@ -57,6 +86,7 @@ const SignUpForm = () => {
 							name="passwordVerify"
 							type="password"
 							onChange={handleChange}
+							error={err}
 						/>
 
 						<Button color="blue" fluid size="large">
