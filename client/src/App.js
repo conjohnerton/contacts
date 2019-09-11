@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { Route } from "react-router-dom";
+import LoginForm from "./components/LoginForm";
 import "./styles/App.css";
 
 function App() {
+	const [s, ssss] = useState();
 	return (
 		<div className="App">
 			<Route exact path="/" render={() => <h1>Home page</h1>} />
-			<Route path="/login" render={() => <h1>Login!</h1>} />
+			<Route path="/login" render={() => <LoginForm />} />
 			<Route path="/signup" render={() => <h1>Hit the sign up route!</h1>} />
 			<Route
 				exact
