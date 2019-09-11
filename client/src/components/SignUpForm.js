@@ -10,18 +10,14 @@ import {
 	Segment
 } from "semantic-ui-react";
 import useForm from "../customHooks/useForm";
-import contactImg from "../assets/512px_contact_logo.png";
 
-// uses a custom hook to implement form functions
-const LoginForm = () => {
-	const { values, handleSubmit, handleChange } = useForm(login);
+// TODO: validate same password entry before submission
 
-	// the function that is called on submit of the form
-	function login() {
-		console.log(values);
-	}
+const SignUpForm = () => {
+	const { values, handleSubmit, handleChange } = useForm(() =>
+		console.log(values)
+	);
 
-	// returns form jsx
 	return (
 		<Grid
 			textAlign="center"
@@ -30,15 +26,14 @@ const LoginForm = () => {
 		>
 			<Grid.Column style={{ maxWidth: 450 }}>
 				<Header as="h2" color="blue" textAlign="center">
-					{/* <Image style={{ padding: ".3em" }} src={contactImg} /> */}
-					Log-in to your account
+					Create a new account
 				</Header>
 
 				<Form size="large" onSubmit={handleSubmit}>
 					<Segment stacked>
 						<Form.Input
 							fluid
-							icon="user"
+							icon="mail"
 							iconPosition="left"
 							placeholder="E-mail address"
 							type="email"
@@ -54,6 +49,15 @@ const LoginForm = () => {
 							type="password"
 							onChange={handleChange}
 						/>
+						<Form.Input
+							fluid
+							icon="protect"
+							iconPosition="left"
+							placeholder="Repeat Password"
+							name="passwordVerify"
+							type="password"
+							onChange={handleChange}
+						/>
 
 						<Button color="blue" fluid size="large">
 							Login
@@ -62,11 +66,11 @@ const LoginForm = () => {
 				</Form>
 
 				<Message>
-					New? <Link to="/signup">Sign Up</Link>
+					Have an account? <Link to="/login">Log In</Link>
 				</Message>
 			</Grid.Column>
 		</Grid>
 	);
 };
 
-export default LoginForm;
+export default SignUpForm;

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
 import LoginForm from "./components/LoginForm";
+import SignUpForm from "./components/SignUpForm";
 import "./styles/App.css";
 
 function App() {
@@ -9,7 +10,7 @@ function App() {
 		<div className="App">
 			<Route exact path="/" render={() => <h1>Home page</h1>} />
 			<Route path="/login" render={() => <LoginForm />} />
-			<Route path="/signup" render={() => <h1>Hit the sign up route!</h1>} />
+			<Route path="/signup" render={() => <SignUpForm />} />
 			<Route
 				exact
 				path="/contacts"

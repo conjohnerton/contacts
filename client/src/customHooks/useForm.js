@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 const useForm = (callback) => {
-	const [inputs, setInputs] = useState({});
+	const [values, setValues] = useState({});
 
 	const handleSubmit = (event) => {
 		// only stops reload if event exists
@@ -14,9 +14,9 @@ const useForm = (callback) => {
 	// passes previous input in and only changes the input that was altered
 	const handleChange = (event) => {
 		event.persist();
-		console.log(inputs);
-		setInputs((inputs) => ({
-			...inputs,
+		console.log(values);
+		setValues((values) => ({
+			...values,
 			[event.target.name]: event.target.value
 		}));
 	};
@@ -24,7 +24,7 @@ const useForm = (callback) => {
 	return {
 		handleSubmit,
 		handleChange,
-		inputs
+		values
 	};
 };
 
