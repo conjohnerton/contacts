@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Route } from "react-router-dom";
+import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import "./styles/App.css";
@@ -8,7 +9,7 @@ function App() {
 	const [s, ssss] = useState();
 	return (
 		<div className="App">
-			<Route exact path="/" render={() => <h1>Home page</h1>} />
+			<Route exact path="/" render={() => <HomePage />} />
 			<Route path="/login" render={() => <LoginForm />} />
 			<Route path="/signup" render={() => <SignUpForm />} />
 			<Route
