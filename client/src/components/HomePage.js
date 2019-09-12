@@ -4,22 +4,16 @@ import PropTypes from "prop-types";
 import {
 	Button,
 	Container,
-	Divider,
 	Grid,
 	Header,
 	Icon,
-	Image,
 	List,
 	Menu,
 	Responsive,
 	Segment,
-	Sidebar,
 	Visibility
 } from "semantic-ui-react";
 
-// Heads up!
-// We using React Static to prerender our docs with server side rendering, this is a quite simple solution.
-// For more advanced usage please check Responsive docs under the "Usage" section.
 const getWidth = () => {
 	const isSSR = typeof window === "undefined";
 
@@ -34,7 +28,8 @@ const HomepageHeading = ({ mobile }) => (
 	<Container text>
 		<Header
 			as="h1"
-			content="Contax"
+			color="grey"
+			content="Where Are My Contacts?"
 			inverted
 			style={{
 				fontSize: mobile ? "2em" : "4em",
@@ -45,7 +40,7 @@ const HomepageHeading = ({ mobile }) => (
 		/>
 		<Header
 			as="h2"
-			content="Forget your relationships... We will remember them for you."
+			content="A contact manager... for your grandma!"
 			inverted
 			style={{
 				fontSize: mobile ? "1.5em" : "1.7em",
@@ -105,7 +100,7 @@ class DesktopContainer extends Component {
 							size="large"
 						>
 							<Container>
-								<Menu.Item>Contax</Menu.Item>
+								<Menu.Item>Where Are My Contacts?</Menu.Item>
 								<Menu.Item position="right">
 									<Link to="/login">
 										<Button as="a" inverted={!fixed}>
@@ -235,7 +230,7 @@ const HomePage = () => (
 							We Help Companies and Clients
 						</Header>
 						<p style={{ fontSize: "1.33em" }}>
-							by giving them superpowers to do things that they never
+							By giving them superpowers to do things that they never
 							thought possible. Let us delight your customers and empower
 							your needs... through pure conctact management!
 						</p>
@@ -252,7 +247,9 @@ const HomePage = () => (
 				</Grid.Row>
 				<Grid.Row>
 					<Grid.Column textAlign="center">
-						<Button size="huge">Create An Account</Button>
+						<Link to="/signup">
+							<Button size="huge">Create An Account</Button>
+						</Link>
 					</Grid.Column>
 				</Grid.Row>
 			</Grid>
@@ -264,21 +261,19 @@ const HomePage = () => (
 						<Grid.Column width={3}>
 							<Header inverted as="h4" content="About" />
 							<List link inverted>
-								<List.Item as="a">Sitemap</List.Item>
-								<List.Item as="a">Contact Us</List.Item>
-								<List.Item as="a" href="www.wikipedia.com/">
-									Religious Dissonance
-								</List.Item>
-								<List.Item as="a">Quantum Mechanics</List.Item>
+								<List.Item>Sitemap</List.Item>
+								<List.Item>Contact Us</List.Item>
+								<List.Item>Religious Dissonance</List.Item>
+								<List.Item>Quantum Mechanics</List.Item>
 							</List>
 						</Grid.Column>
 						<Grid.Column width={3}>
 							<Header inverted as="h4" content="Services" />
 							<List link inverted>
-								<List.Item as="a">Banana Pre-Order</List.Item>
-								<List.Item as="a">Hat Gallery</List.Item>
-								<List.Item as="a">Give Away Your SSN</List.Item>
-								<List.Item as="a">Favorite Shirtless Avenger</List.Item>
+								<List.Item>Banana Pre-Order</List.Item>
+								<List.Item>Hat Gallery</List.Item>
+								<List.Item>Give Away Your SSN</List.Item>
+								<List.Item>Favorite Shirtless Avenger</List.Item>
 							</List>
 						</Grid.Column>
 						<Grid.Column width={7}>

@@ -5,17 +5,17 @@ import {
 	Form,
 	Grid,
 	Header,
-	Image,
 	Message,
 	Segment
 } from "semantic-ui-react";
-import useForm from "../customHooks/useForm";
+import useRequiredForm from "../customHooks/useRequiredForm";
 import "../styles/Form.css";
-import contactImg from "../assets/512px_contact_logo.png";
 
 // uses a custom hook to implement form functions
 const LoginForm = () => {
-	const { values, handleSubmit, handleChange } = useForm(login);
+	const { values, handleVerifiedSubmit, handleChange } = useRequiredForm(
+		login
+	);
 
 	// the function that is called on submit of the form
 	function login() {
@@ -31,11 +31,10 @@ const LoginForm = () => {
 		>
 			<Grid.Column style={{ maxWidth: 450 }} className="Form">
 				<Header as="h2" color="blue" textAlign="center">
-					{/* <Image style={{ padding: ".4em" }} src={contactImg} /> */}
 					Log-in to your account
 				</Header>
 
-				<Form size="large" onSubmit={handleSubmit}>
+				<Form size="large" onSubmit={handleVerifiedSubmit}>
 					<Segment stacked>
 						<Header textAlign="left" color="black" sub>
 							Email

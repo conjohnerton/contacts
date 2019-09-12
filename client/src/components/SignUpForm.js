@@ -5,15 +5,14 @@ import {
 	Form,
 	Grid,
 	Header,
-	Image,
 	Message,
 	Segment
 } from "semantic-ui-react";
 import "../styles/Form.css";
-import useForm from "../customHooks/useForm";
+import useRequiredForm from "../customHooks/useRequiredForm";
 
 const SignUpForm = () => {
-	const { values, handleSubmit, handleChange } = useForm(() =>
+	const { values, handleVerifiedSubmit, handleChange } = useRequiredForm(() =>
 		console.log(values)
 	);
 	const [err, setErr] = useState(false);
@@ -26,7 +25,8 @@ const SignUpForm = () => {
 			return;
 		}
 
-		handleSubmit(event);
+		setErr(false);
+		handleVerifiedSubmit(event);
 	};
 
 	return (
@@ -49,7 +49,7 @@ const SignUpForm = () => {
 							fluid
 							icon="mail"
 							iconPosition="left"
-							placeholder="E-mail address"
+							placeholder="cant_see_a_thing@lostContacts.yeet"
 							type="email"
 							name="email"
 							onChange={handleChange}
@@ -70,20 +70,20 @@ const SignUpForm = () => {
 							fluid
 							icon="lock"
 							iconPosition="left"
-							placeholder="Password"
+							placeholder="notMyPassword!123"
 							name="password"
 							type="password"
 							onChange={handleChange}
 							error={err}
 						/>
 						<Header textAlign="left" color="black" sub>
-							Repeat Password
+							Verify Password
 						</Header>
 						<Form.Input
 							fluid
 							icon="protect"
 							iconPosition="left"
-							placeholder="Verify Password"
+							placeholder="notMyPassword!123"
 							name="passwordVerify"
 							type="password"
 							onChange={handleChange}
