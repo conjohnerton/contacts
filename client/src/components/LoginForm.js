@@ -8,21 +8,10 @@ import {
 	Message,
 	Segment
 } from "semantic-ui-react";
-import useRequiredForm from "../customHooks/useRequiredForm";
 import "../styles/Form.css";
 
 // uses a custom hook to implement form functions
-const LoginForm = () => {
-	const { values, handleVerifiedSubmit, handleChange } = useRequiredForm(
-		login
-	);
-
-	// the function that is called on submit of the form
-	function login() {
-		console.log(values);
-	}
-
-	// returns form jsx
+const LoginForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 	return (
 		<Grid
 			textAlign="center"
