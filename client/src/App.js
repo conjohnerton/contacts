@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import axios from "axios";
 import useRequiredForm from "./customHooks/useRequiredForm";
+import login from "./services/login";
 import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
@@ -9,20 +10,17 @@ import "./styles/App.css";
 const baseUrl = "http://localhost:3001/";
 
 function App() {
-	const loginCallback = async () => {
-		const response = await axios.post(`${baseUrl}login`, loginValues);
-	};
 	const [user, setUser] = useState(null);
 	const {
 		loginValues,
 		handleVerifiedLogin,
 		handleLoginChange
-	} = useRequiredForm(loginCallback);
+	} = useRequiredForm(login);
 	const {
 		signUpValues,
 		handleVerifiedSignUp,
 		handleSignUpChange
-	} = useRequiredForm(loginCallback);
+	} = useRequiredForm();
 
 	// redirect user if no token is found
 	// useEffect(() => {
@@ -31,6 +29,8 @@ function App() {
 
 	return (
 		<div className="App">
+			{/* redirects user to login page if they are not signed in */}
+			{user === null ? <Redirect to="/login" /> : ""}
 			<Route exact path="/" render={() => <HomePage />} />
 			<Route
 				path="/login"
