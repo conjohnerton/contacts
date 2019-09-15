@@ -9,12 +9,8 @@ import {
 	Segment
 } from "semantic-ui-react";
 import "../styles/Form.css";
-import useRequiredForm from "../customHooks/useRequiredForm";
 
-const SignUpForm = () => {
-	const { values, handleVerifiedSubmit, handleChange } = useRequiredForm(() =>
-		console.log(values)
-	);
+const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 	const [err, setErr] = useState(false);
 
 	// checks if passwords match and submits, if not generates a warning message
