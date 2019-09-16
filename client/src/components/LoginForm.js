@@ -11,6 +11,7 @@ import {
 import "../styles/Form.css";
 
 const LoginForm = ({
+	children,
 	email,
 	password,
 	handleSubmit,
@@ -27,6 +28,9 @@ const LoginForm = ({
 				<Header as="h2" color="blue" textAlign="center">
 					Log-in to your account
 				</Header>
+
+				{/* display error message */}
+				{children}
 
 				<Form size="large" onSubmit={handleSubmit}>
 					<Segment stacked>

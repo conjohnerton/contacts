@@ -11,6 +11,7 @@ import {
 import "../styles/Form.css";
 
 const SignUpForm = ({
+	children,
 	email,
 	password,
 	handleSubmit,
@@ -42,6 +43,9 @@ const SignUpForm = ({
 				<Header as="h2" color="blue" textAlign="center">
 					Create a new account
 				</Header>
+
+				{/* display error message */}
+				{children}
 
 				<Form size="large" onSubmit={checkPasswordMatch}>
 					<Segment stacked>

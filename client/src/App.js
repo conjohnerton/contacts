@@ -19,6 +19,10 @@ function App() {
 	const handleLogin = async (event) => {
 		event.preventDefault();
 
+		if (hasIncompleteInput(email, password)) {
+			return;
+		}
+
 		try {
 			const user = await login({ email, password });
 			setUser(user);
@@ -36,6 +40,10 @@ function App() {
 	const handleSignup = async (event) => {
 		event.preventDefault();
 
+		if (hasIncompleteInput(email, password)) {
+			return;
+		}
+
 		// sends new user info to server and sets current user or sets error message
 		try {
 			const newUser = await signup({ email, password });
@@ -50,11 +58,21 @@ function App() {
 		}
 	};
 
+	function hasIncompleteInput(email, password) {
+		if (email === "" || password === "") {
+			setError("Please enter a username and password");
+			setTimeout(() => setError(""), 5000);
+			return true;
+		}
+
+		return false;
+	}
+
+	// renders error message if there is an error message
+	const renderError = error !== "" && <Message negative>{error}</Message>;
+
 	return (
 		<div className="App">
-			{/* renders error message if there is an error message */}
-			{error !== "" && <Message negative>{error}</Message>}
-
 			{/* redirects user to login page if they are not signed in */}
 			{user === null ? <Redirect to="/login" /> : ""}
 
@@ -68,7 +86,9 @@ function App() {
 						handleSubmit={handleLogin}
 						setEmail={({ target }) => setEmail(target.value)}
 						setPassword={({ target }) => setPassword(target.value)}
-					/>
+					>
+						{renderError}
+					</LoginForm>
 				)}
 			/>
 			<Route
@@ -80,7 +100,9 @@ function App() {
 						handleSubmit={handleSignup}
 						setEmail={({ target }) => setEmail(target.value)}
 						setPassword={({ target }) => setPassword(target.value)}
-					/>
+					>
+						{renderError}
+					</SignUpForm>
 				)}
 			/>
 			<Route
