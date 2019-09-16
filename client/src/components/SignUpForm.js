@@ -10,19 +10,26 @@ import {
 } from "semantic-ui-react";
 import "../styles/Form.css";
 
-const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
+const SignUpForm = ({
+	email,
+	password,
+	handleSubmit,
+	setEmail,
+	setPassword
+}) => {
 	const [err, setErr] = useState(false);
+	const [passwordVerify, setPasswordVerify] = useState("");
 
 	// checks if passwords match and submits, if not generates a warning message
 	const checkPasswordMatch = (event) => {
-		if (values.password !== values.passwordVerify) {
+		if (password !== passwordVerify) {
 			// sets err to render the message
 			setErr(true);
+			setTimeout(() => setErr(false), 3000);
 			return;
 		}
 
-		setErr(false);
-		handleVerifiedSubmit(event);
+		handleSubmit(event);
 	};
 
 	return (
@@ -48,9 +55,11 @@ const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 							placeholder="cant_see_a_thing@lostContacts.yeet"
 							type="email"
 							name="email"
-							onChange={handleChange}
+							value={email}
+							onChange={setEmail}
 						/>
-						{/* err renders only on password mismatch */}
+
+						{/* error renders only on password mismatch */}
 						{err ? (
 							<Message
 								negative
@@ -59,6 +68,7 @@ const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 						) : (
 							""
 						)}
+
 						<Header textAlign="left" color="black" sub>
 							Password
 						</Header>
@@ -69,9 +79,11 @@ const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 							placeholder="notMyPassword!123"
 							name="password"
 							type="password"
-							onChange={handleChange}
+							value={password}
+							onChange={setPassword}
 							error={err}
 						/>
+
 						<Header textAlign="left" color="black" sub>
 							Verify Password
 						</Header>
@@ -82,7 +94,8 @@ const SignUpForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 							placeholder="notMyPassword!123"
 							name="passwordVerify"
 							type="password"
-							onChange={handleChange}
+							value={passwordVerify}
+							onChange={({ target }) => setPasswordVerify(target.value)}
 							error={err}
 						/>
 

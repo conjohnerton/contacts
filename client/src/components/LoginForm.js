@@ -10,8 +10,13 @@ import {
 } from "semantic-ui-react";
 import "../styles/Form.css";
 
-// uses a custom hook to implement form functions
-const LoginForm = ({ values, handleVerifiedSubmit, handleChange }) => {
+const LoginForm = ({
+	email,
+	password,
+	handleSubmit,
+	setEmail,
+	setPassword
+}) => {
 	return (
 		<Grid
 			textAlign="center"
@@ -23,7 +28,7 @@ const LoginForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 					Log-in to your account
 				</Header>
 
-				<Form size="large" onSubmit={handleVerifiedSubmit}>
+				<Form size="large" onSubmit={handleSubmit}>
 					<Segment stacked>
 						<Header textAlign="left" color="black" sub>
 							Email
@@ -35,8 +40,10 @@ const LoginForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 							placeholder="E-mail address"
 							type="email"
 							name="email"
-							onChange={handleChange}
+							value={email}
+							onChange={setEmail}
 						/>
+
 						<Header textAlign="left" color="black" sub>
 							Password
 						</Header>
@@ -47,7 +54,8 @@ const LoginForm = ({ values, handleVerifiedSubmit, handleChange }) => {
 							placeholder="Password"
 							name="password"
 							type="password"
-							onChange={handleChange}
+							value={password}
+							onChange={setPassword}
 						/>
 
 						<Button color="blue" fluid size="large">

@@ -13,7 +13,7 @@ const useRequiredForm = (callback) => {
 			return;
 		}
 
-		handleSubmit(callback);
+		handleSubmit();
 	};
 
 	return {
