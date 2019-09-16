@@ -156,7 +156,7 @@ const HomePage = () => (
 						<p style={{ fontSize: "1.33em" }}>
 							By giving them superpowers to do things that they never
 							thought possible. Let us delight your customers and empower
-							your needs... through pure conctact management!
+							your needs... through pure contact management!
 						</p>
 					</Grid.Column>
 					<Grid.Column width={8} textAlign="right">

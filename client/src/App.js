@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import login from "./services/login";
@@ -15,6 +15,16 @@ function App() {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
+	// checks if user has existing token in localStorage and signs user in if so
+	useEffect(() => {
+		const loggedUserJSON = window.localStorage.getItem("contactAppUser");
+
+		if (loggedUserJSON) {
+			const user = JSON.parse(loggedUserJSON);
+			setUser(user);
+		}
+	}, []);
+
 	// gets user response from given data and sets current user, or sets error message
 	const handleLogin = async (event) => {
 		event.preventDefault();
@@ -25,6 +35,10 @@ function App() {
 
 		try {
 			const user = await login({ email, password });
+
+			// saves new user to localStorage
+			window.localStorage.setItem("contactAppUser", JSON.stringify(user));
+
 			setUser(user);
 			setEmail("");
 			setPassword("");
@@ -47,6 +61,10 @@ function App() {
 		// sends new user info to server and sets current user or sets error message
 		try {
 			const newUser = await signup({ email, password });
+
+			// saves new user to localStorage
+			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
+
 			setUser(newUser);
 			setEmail("");
 			setPassword("");
@@ -56,6 +74,11 @@ function App() {
 				setError("");
 			}, 3000);
 		}
+	};
+
+	const handleLogout = () => {
+		window.localStorage.removeItem("contactAppUser");
+		setUser(null);
 	};
 
 	function hasIncompleteInput(email, password) {
@@ -73,6 +96,7 @@ function App() {
 
 	return (
 		<div className="App">
+			{user !== null ? <p>{user.email} logged in!</p> : ""}
 			{/* redirects user to login page if they are not signed in */}
 			{user === null ? <Redirect to="/login" /> : ""}
 
