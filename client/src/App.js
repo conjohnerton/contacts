@@ -97,8 +97,9 @@ function App() {
 	return (
 		<div className="App">
 			{user !== null ? <p>{user.email} logged in!</p> : ""}
+
 			{/* redirects user to login page if they are not signed in */}
-			{user === null ? <Redirect to="/login" /> : ""}
+			{user === null ? <Redirect to="/" /> : ""}
 
 			<Route exact path="/" render={() => <HomePage />} />
 			<Route
