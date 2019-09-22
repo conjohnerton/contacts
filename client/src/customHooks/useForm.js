@@ -4,7 +4,10 @@ const useForm = (callback) => {
 	const [values, setValues] = useState({});
 
 	const handleSubmit = (event) => {
-		callback();
+		event.preventDefault();
+		setValues({});
+		console.log(values);
+		callback(event);
 	};
 
 	// passes previous input in and only changes the input that was altered
