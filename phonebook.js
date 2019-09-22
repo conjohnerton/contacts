@@ -17,10 +17,10 @@ app.use(cors())
 
 
 
-let contacts = []
+const contacts = []
 
 const generateId = () => {
-  const maxId = contacts.length > 0? Math.max(...contacts.map(n => n.id)): 0
+  const maxId = contacts.length > 0? contacts.length: 0
   return maxId}
 
 
@@ -85,11 +85,13 @@ app.delete('/api/persons/:id', (req, res, next) => {
       res.status(204).end()
     })
     .catch(error => next(error))
+
+    // Remove from contacts array 
 })
 
 // TODO: update path after establishing database 
-app.post('/api/persons', (request, response) => {
-  const body = request.body
+app.post('/api/persons', (req, res) => {
+  const body = req.body
 
 // name not specified 
 	  if (!body.name) {
@@ -127,8 +129,8 @@ app.post('/api/persons', (request, response) => {
     })
   }
 
-  const contact_id = generateId() + 1
-  console.log(contact_id)
+  const contact_id = generateId()
+  console.log(Number(contact_id))
 
   const contact = new Contact({
 	email: body.email,
@@ -139,10 +141,13 @@ app.post('/api/persons', (request, response) => {
   })
 
   contact.save().then(savedContact => {
-    response.json(savedContact.toJSON())
+    res.json(savedContact.toJSON())
   })
 
-  contacts = contacts.concat(contact)
+  //contacts = contacts.concat(contact)
+  contacts.push(contact)
+  console.log(contacts.length)
+  console.log(contact)
 })
 
 
