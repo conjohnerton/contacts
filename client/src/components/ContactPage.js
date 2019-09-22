@@ -1,93 +1,122 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
 import {
 	Button,
 	Container,
-	Sidebar,
-	Image,
 	Grid,
 	Header,
 	Icon,
+	Image,
 	List,
 	Menu,
 	Responsive,
 	Segment,
+	Sidebar,
 	Visibility
 } from "semantic-ui-react";
 
+// Dummy test!
 const doNothing = () => {
 	console.log("Hey, you did it!");
 };
 
+// Sidebar of the contact page.
 const ContactPageSidebar = () => {
-	const 
+	const [search, setSearch] = useState('');
 
-	<SidebarPushable>
-		<Sidebar as={Menu}>
-			<MenuItem>
-				<form>
-					<input
-					value={}
-					onChange={}
-					/>
-				</form>
-			</MenuItem>
-			<MenuItem>
-			</MenuItem>
-			<MenuItem>
-			</MenuItem>
-		</Sidebar>
-	</SidebarPushable>
+	// Updates search value with each keystroke on the contact search bar.
+	const handleSearchChange = (event) => {
+		if (event)
+		{
+			event.preventDefault();
+			console.log(event.log.value);
+			setSearch(event.target.value);
+		}
+	};
+
+	return (
+			<Sidebar.Pushable as={Segment} style={{minHeight: "100vh"}}>
+				<Sidebar 
+					as={Menu}
+					animation='overlay'
+					icon='labeled'
+					width="wide"
+					visible={true}
+					vertical
+					inverted
+					page
+				>
+					<Menu.Item as="a">
+						<Icon name="Search" />
+						<form>
+							<input
+							value={search}
+							onChange={handleSearchChange}
+							/>
+							  Search for a contact here!
+						</form>
+					</Menu.Item>
+					<Menu.Item as="a">
+						<Icon name="Search" />
+						Misc.
+					</Menu.Item>
+					<Menu.Item as="a">
+						<Icon name="Logout" />
+						Logout
+						<Icon />
+					</Menu.Item>
+				</Sidebar>
+
+				<Sidebar.Pusher>
+					<Segment>
+						<Header></Header>
+					</Segment>
+				</Sidebar.Pusher>
+			</Sidebar.Pushable>
+	);
 };
 
 const HomepageHeading = () => (
 	<Container text>
 		<Header
 			as="h1"
-			color="grey"
-			content="Where Are My Contacts?"
+			color="purple"
+			content="Behold, your contacts!"
 			inverted
 			style={{
 				fontSize: "4em",
 				fontWeight: "normal",
 				marginBottom: 0,
 				marginTop: "3em"
-			}}
+			}}	
 		/>
-		<Header
-			as="h2"
-			color="grey"
-			content="A contact manager... for your grandma!"
-			inverted
-			style={{
-				fontSize: "1.7em",
-				fontWeight: "normal",
-				marginTop: "1.5em"
-			}}
-		/>
-
-		<Link to="/signup">
+		<div>
+			<Link to="/signup">
 			<Button primary size="huge">
-				Get Started
+				Get Started Tomorrow...
 				<Icon name="right arrow" />
 			</Button>
 		</Link>
+		</div>
 	</Container>
 );
 
 const ContactPage = () => {
-    const ContactPageHeading = () => (
-        <Container text>
-            <div>Wassup!</div>
-        </Container>
-	);
 
     return (
 		<Container>
-			<ContactPageHeading />
+			<ContactPageSidebar />
 			<HomepageHeading />
 		</Container>
 	);
 };
+
+{/* <form>
+							<input
+							value={search}
+							onChange={handleSearchChange}
+							/>
+							  Search for a contact here!
+						</form> */}
 
 export default ContactPage;
