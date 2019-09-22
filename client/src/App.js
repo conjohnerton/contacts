@@ -6,6 +6,7 @@ import signup from "./services/signup";
 import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
+import ContactPage from "./components/ContactPage";
 import "./styles/App.css";
 
 function App() {
@@ -100,9 +101,20 @@ function App() {
 			{user !== null ? <p>{user.email} logged in!</p> : ""}
 
 			{/* redirects user to login page if they are not signed in */}
+<<<<<<< HEAD
+			{/* {user === null ? <Redirect to="/login" /> : ""} */}
+=======
 			{user === null ? <Redirect to="/" /> : ""}
 
+>>>>>>> 0928bfba513d858eaa82e1b0e1a42d92b16c9ee3
 			<Route exact path="/" render={() => <HomePage />} />
+			<Route
+				path="/contact"
+				render={(props) => (
+					<ContactPage
+					/>
+				)}
+			/>
 			<Route
 				path="/login"
 				render={(props) => (
