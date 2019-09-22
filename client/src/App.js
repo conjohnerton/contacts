@@ -101,20 +101,9 @@ function App() {
 			{user !== null ? <p>{user.email} logged in!</p> : ""}
 
 			{/* redirects user to login page if they are not signed in */}
-<<<<<<< HEAD
-			{/* {user === null ? <Redirect to="/login" /> : ""} */}
-=======
 			{user === null ? <Redirect to="/" /> : ""}
 
->>>>>>> 0928bfba513d858eaa82e1b0e1a42d92b16c9ee3
 			<Route exact path="/" render={() => <HomePage />} />
-			<Route
-				path="/contact"
-				render={(props) => (
-					<ContactPage
-					/>
-				)}
-			/>
 			<Route
 				path="/login"
 				render={(props) => (
@@ -143,13 +132,7 @@ function App() {
 					</SignUpForm>
 				)}
 			/>
-			<Route
-				exact
-				path="/contacts"
-				render={() => (
-					<h1>This will show the contacts for the person signed in</h1>
-				)}
-			/>
+			<Route exact path="/contacts" render={(props) => <ContactPage />} />
 			<Route
 				exact
 				path="/contacts/add"
