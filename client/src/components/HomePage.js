@@ -103,13 +103,10 @@ class DesktopContainer extends Component {
 								<Menu.Item>Where Are My Contacts?</Menu.Item>
 								<Menu.Item position="right">
 									<Link to="/login">
-										<Button as="a" inverted={!fixed}>
-											Log in
-										</Button>
+										<Button inverted={!fixed}>Log in</Button>
 									</Link>
 									<Link to="/signup">
 										<Button
-											as="a"
 											inverted={!fixed}
 											primary={fixed}
 											style={{ marginLeft: "0.5em" }}

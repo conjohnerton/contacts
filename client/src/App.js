@@ -11,6 +11,7 @@ import "./styles/App.css";
 function App() {
 	// state hooks
 	const [user, setUser] = useState(null);
+	const [contacts, setContacts] = useState({});
 	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
