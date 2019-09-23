@@ -1,7 +1,15 @@
 import React, { useState, useEffect } from "react";
-import { Button, Header, Icon, Label, Segment } from "semantic-ui-react";
+import {
+	Button,
+	Form,
+	Grid,
+	Header,
+	Message,
+	Segment
+} from "semantic-ui-react";
+import "../styles/Form.css";
 
-const AddForm = () => {
+const AddForm = (props) => {
 	return (
 		<Grid
 			textAlign="center"
@@ -10,51 +18,58 @@ const AddForm = () => {
 		>
 			<Grid.Column style={{ maxWidth: 450 }} className="Form">
 				<Header as="h2" color="blue" textAlign="center">
-					Log-in to your account
+					Create a new contact
 				</Header>
 
-				{/* display error message */}
-				{children}
-
-				<Form size="large" onSubmit={handleSubmit}>
+				<Form size="large">
 					<Segment stacked>
 						<Header textAlign="left" color="black" sub>
-							Email
+							Name
 						</Header>
 						<Form.Input
 							fluid
-							icon="user"
-							iconPosition="left"
-							placeholder="E-mail address"
-							type="email"
-							name="email"
-							value={email}
-							onChange={setEmail}
+							icon="wheelchair"
+							iconPosition="right"
+							placeholder="Bo-Bitty-Bob Steggatoxic"
+							type="name"
+							name="name"
+							// value={email}
+							// onChange={setEmail}
 						/>
 
 						<Header textAlign="left" color="black" sub>
-							Password
+							Phone Number
 						</Header>
 						<Form.Input
 							fluid
-							icon="lock"
-							iconPosition="left"
-							placeholder="Password"
-							name="password"
-							type="password"
-							value={password}
-							onChange={setPassword}
+							icon="phone square"
+							iconPosition="right"
+							placeholder="407-412-1234"
+							name="number"
+							type="name"
+							// value={password}
+							// onChange={setPassword}
+						/>
+
+						<Header textAlign="left" color="black" sub>
+							Special Note
+						</Header>
+						<Form.Input
+							fluid
+							icon="sticky note"
+							iconPosition="right"
+							placeholder="Smells just like the retirement home"
+							name="note"
+							type="name"
+							// value={password}
+							// onChange={setPassword}
 						/>
 
 						<Button color="blue" fluid size="large">
-							Login
+							Add
 						</Button>
 					</Segment>
 				</Form>
-
-				<Message>
-					Cancel <Link to="/contacts"></Link>
-				</Message>
 			</Grid.Column>
 		</Grid>
 	);
