@@ -8,6 +8,7 @@ import {
 	Icon,
 	Image,
 	List,
+	Label,
 	Menu,
 	Responsive,
 	Segment,
@@ -22,12 +23,11 @@ import {
 const ContactPageMenu = ({ search, setSearch }) => {
 	return (
 		<Menu fluid widths={3}>
-			<Menu.Item
-				name="Search"
-				style={{ padding: ".5em", paddingBottom: "1px" }}
-			>
+			<Menu.Item name="Search">
 				{/* <Header sub style={{ padding: ".5em", paddingBottom: "1px" }}> */}
-				<p>Search</p>
+				<p style={{ paddingRight: ".5em", marginBottom: ".1em" }}>
+					Search
+				</p>
 				{/* </Header> */}
 				<Search
 					onSearchChange={setSearch}
@@ -109,7 +109,9 @@ const ContactPage = (props) => {
 		if (!props.loading) {
 			return (
 				<Segment
-					style={{ boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)" }}
+					style={{
+						boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)"
+					}}
 				>
 					<ContactPageHeading shown={shown} />
 				</Segment>
