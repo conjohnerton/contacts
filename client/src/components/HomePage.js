@@ -69,9 +69,6 @@ HomepageHeading.propTypes = {
 class DesktopContainer extends Component {
 	state = {};
 
-	hideFixedMenu = () => this.setState({ fixed: false });
-	showFixedMenu = () => this.setState({ fixed: true });
-
 	render() {
 		const { children } = this.props;
 		const { fixed } = this.state;
@@ -103,7 +100,9 @@ class DesktopContainer extends Component {
 								<Menu.Item>Where Are My Contacts?</Menu.Item>
 								<Menu.Item position="right">
 									<Link to="/login">
-										<Button inverted={!fixed}>Log in</Button>
+										<Button inverted={!fixed}>
+											Log in
+										</Button>
 									</Link>
 									<Link to="/signup">
 										<Button
@@ -151,9 +150,10 @@ const HomePage = () => (
 							We Help Companies and Clients
 						</Header>
 						<p style={{ fontSize: "1.33em" }}>
-							By giving them superpowers to do things that they never
-							thought possible. Let us delight your customers and empower
-							your needs... through pure contact management!
+							By giving them superpowers to do things that they
+							never thought possible. Let us delight your
+							customers and empower your needs... through pure
+							contact management!
 						</p>
 					</Grid.Column>
 					<Grid.Column width={8} textAlign="right">
@@ -161,8 +161,8 @@ const HomePage = () => (
 							We also make your personal life a breeze.
 						</Header>
 						<p style={{ fontSize: "1.33em" }}>
-							No longer will you have to track your contacts by hand,
-							we're a dignified relationship manager!
+							No longer will you have to track your contacts by
+							hand, we're a dignified relationship manager!
 						</p>
 					</Grid.Column>
 				</Grid.Row>
@@ -194,7 +194,9 @@ const HomePage = () => (
 								<List.Item>Banana Pre-Order</List.Item>
 								<List.Item>Hat Gallery</List.Item>
 								<List.Item>Give Away Your SSN</List.Item>
-								<List.Item>Favorite Shirtless Avenger</List.Item>
+								<List.Item>
+									Favorite Shirtless Avenger
+								</List.Item>
 							</List>
 						</Grid.Column>
 						<Grid.Column width={7}>
@@ -202,9 +204,10 @@ const HomePage = () => (
 								No Warranty Included
 							</Header>
 							<p>
-								Really, if something messes up, we are not responsible.
-								You should probably memorize your parents' numbers just
-								in case your car breaks down or something. Good luck!
+								Really, if something messes up, we are not
+								responsible. You should probably memorize your
+								parents' numbers just in case your car breaks
+								down or something. Good luck!
 							</p>
 						</Grid.Column>
 					</Grid.Row>
