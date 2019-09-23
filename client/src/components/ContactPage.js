@@ -26,9 +26,7 @@ const ContactPageMenu = ({ search, setSearch }) => {
 		<Menu fluid widths={3}>
 			<Menu.Item name="Search">
 				{/* <Header sub style={{ padding: ".5em", paddingBottom: "1px" }}> */}
-				<p style={{ paddingRight: ".5em", marginBottom: ".1em" }}>
-					Search
-				</p>
+				<p style={{ paddingRight: ".5em", marginBottom: ".1em" }}>Search</p>
 				{/* </Header> */}
 				<Search
 					onSearchChange={setSearch}
