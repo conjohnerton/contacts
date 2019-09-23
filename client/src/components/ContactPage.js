@@ -29,19 +29,15 @@ const ContactPageMenu = ({ search, setSearch }) => {
 					onSearchChange={setSearch}
 					value={search}
 					showNoResults={false}
+					open={false}
 				/>
-				{/* <input
-					placeholder="Search your contacts"
-					value={search}
-					onChange={setSearch}
-				/> */}
 			</Menu.Item>
 
-			<Menu.Item name="reviews" onClick={() => ""}>
+			<Menu.Item name="Add" onClick={() => ""}>
 				Add Contact
 			</Menu.Item>
 
-			<Menu.Item name="upcomingEvents" onClick={() => ""}>
+			<Menu.Item name="Logout" onClick={() => ""}>
 				Logout
 			</Menu.Item>
 		</Menu>
@@ -75,9 +71,35 @@ const ContactPageHeading = ({ shown }) => {
 
 const ContactPage = (props) => {
 	const shown = props.contacts.map((contact) => (
-		<h2>
-			{contact.name} - {contact.number}
-		</h2>
+		<Segment>
+			<Label>
+				{contact.name} - {contact.number}
+			</Label>
+			<Icon
+				style={{
+					float: "right",
+					borderRadius: "10px",
+					marginTop: "1em"
+				}}
+				bordered
+				inverted
+				color="pink"
+				name="trash alternate"
+				size="large"
+			></Icon>
+			<Icon
+				style={{
+					float: "right",
+					borderRadius: "10px",
+					marginTop: "1em"
+				}}
+				bordered
+				inverted
+				color="purple"
+				name="edit"
+				size="large"
+			></Icon>
+		</Segment>
 	));
 
 	return (
