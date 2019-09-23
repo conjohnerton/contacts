@@ -39,7 +39,7 @@ const ContactPageMenu = ({ search, setSearch }) => {
 			</Menu.Item>
 
 			<Menu.Item name="Add" onClick={() => ""}>
-				Add Contact
+				<Link to="/contacts/add">Add Contact</Link>
 			</Menu.Item>
 
 			<Menu.Item name="Logout" onClick={() => ""}>

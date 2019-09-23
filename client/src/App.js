@@ -4,6 +4,7 @@ import { Message } from "semantic-ui-react";
 import login from "./services/login";
 import signup from "./services/signup";
 import HomePage from "./components/HomePage";
+import AddForm from "./components/AddForm";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import ContactPage from "./components/ContactPage";
@@ -96,7 +97,10 @@ function App() {
 			const newUser = await signup({ email, password });
 
 			// saves new user to localStorage
-			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
+			window.localStorage.setItem(
+				"contactAppUser",
+				JSON.stringify(newUser)
+			);
 
 			setUser(newUser);
 			setEmail("");
@@ -175,11 +179,7 @@ function App() {
 					/>
 				)}
 			/>
-			<Route
-				exact
-				path="/contacts/add"
-				render={() => <h1>This will be the add contact page</h1>}
-			/>
+			<Route exact path="/contacts/add" render={() => <AddForm />} />
 			<Route
 				exact
 				path="/contacts/:id"
