@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
 	Button,
@@ -13,28 +13,27 @@ import {
 	Segment,
 	Sidebar,
 	Visibility,
-	Label,
-	Search
+	Dimmer,
+	Search,
+	Loader
 } from "semantic-ui-react";
 
 // Sidebar of the contact page.
 const ContactPageMenu = ({ search, setSearch }) => {
 	return (
 		<Menu fluid widths={3}>
-			<Menu.Item name="Search">
-				<Header sub style={{ padding: ".5em", paddingBottom: "1px" }}>
-					Search
-				</Header>
+			<Menu.Item
+				name="Search"
+				style={{ padding: ".5em", paddingBottom: "1px" }}
+			>
+				{/* <Header sub style={{ padding: ".5em", paddingBottom: "1px" }}> */}
+				<p>Search</p>
+				{/* </Header> */}
 				<Search
 					onSearchChange={setSearch}
 					value={search}
 					showNoResults={false}
 				/>
-				{/* <input
-					placeholder="Search your contacts"
-					value={search}
-					onChange={setSearch}
-				/> */}
 			</Menu.Item>
 
 			<Menu.Item name="reviews" onClick={() => ""}>
@@ -59,7 +58,6 @@ const ContactPageHeading = ({ shown }) => {
 	return (
 		<Container text>
 			<Header
-				as="h1"
 				color="black"
 				content={noContactsDisplay(shown)}
 				style={{
@@ -80,6 +78,29 @@ const ContactPage = (props) => {
 		</h2>
 	));
 
+	const loadOrShow = () => {
+		if (!props.loading) {
+			return (
+				<Segment
+					style={{ boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)" }}
+				>
+					<ContactPageHeading shown={shown} />
+				</Segment>
+			);
+		}
+
+		return (
+			<Segment
+				style={{
+					boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)",
+					minHeight: "50vh"
+				}}
+			>
+				<Loader active />
+			</Segment>
+		);
+	};
+
 	return (
 		<Container>
 			<ContactPageMenu
@@ -87,11 +108,7 @@ const ContactPage = (props) => {
 				setSearch={props.setSearch}
 				style={{ boxShadow: "6px 7px 17px 5px rgba(0, 0, 0, 0.38)" }}
 			/>
-			<Segment
-				style={{ boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)" }}
-			>
-				<ContactPageHeading shown={shown} />
-			</Segment>
+			{loadOrShow()}
 		</Container>
 	);
 };

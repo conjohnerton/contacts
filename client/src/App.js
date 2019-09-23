@@ -32,9 +32,15 @@ function App() {
 	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [loading, setLoading] = useState(true);
+	const [contact, setContact] = useState({});
 
 	// checks if user has existing token in localStorage and signs user in if so
 	useEffect(() => {
+		setTimeout(() => {
+			setLoading(false);
+		}, 1000);
+
 		const loggedUserJSON = window.localStorage.getItem("contactAppUser");
 
 		if (loggedUserJSON) {
@@ -90,10 +96,7 @@ function App() {
 			const newUser = await signup({ email, password });
 
 			// saves new user to localStorage
-			window.localStorage.setItem(
-				"contactAppUser",
-				JSON.stringify(newUser)
-			);
+			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
 
 			setUser(newUser);
 			setEmail("");
@@ -168,6 +171,7 @@ function App() {
 						search={search}
 						setSearch={({ target }) => setSearch(target.value)}
 						contacts={shownContacts}
+						loading={loading}
 					/>
 				)}
 			/>
