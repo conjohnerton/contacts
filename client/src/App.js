@@ -12,7 +12,23 @@ import "./styles/App.css";
 function App() {
 	// state hooks
 	const [user, setUser] = useState(null);
-	const [contacts, setContacts] = useState({});
+	// MOCK CONTACTS~!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	const [contacts, setContacts] = useState([
+		{
+			name: "Larry Hobbs",
+			number: "666-666-6667"
+		},
+		{
+			name: "Larry HobbitSon",
+			number: "666-666-6667"
+		},
+		{
+			name: "Larry BraggardlyHurtleFart",
+			number: "666-666-6667"
+		}
+	]);
+	const [shownContacts, setShownContacts] = useState([]);
+	const [search, setSearch] = useState("");
 	const [error, setError] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
@@ -27,7 +43,16 @@ function App() {
 		}
 	}, []);
 
-	// gets user response from given data and sets current user, or sets error message
+	// sets shown contacts when search changes
+	useEffect(() => {
+		setShownContacts(
+			contacts.filter((contact) =>
+				contact.name.toUpperCase().includes(search.toUpperCase())
+			)
+		);
+	}, [search]);
+
+	// gets user response from given data and sets current user or sets error message
 	const handleLogin = async (event) => {
 		event.preventDefault();
 
@@ -65,7 +90,10 @@ function App() {
 			const newUser = await signup({ email, password });
 
 			// saves new user to localStorage
-			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
+			window.localStorage.setItem(
+				"contactAppUser",
+				JSON.stringify(newUser)
+			);
 
 			setUser(newUser);
 			setEmail("");
@@ -101,7 +129,7 @@ function App() {
 			{user !== null ? <p>{user.email} logged in!</p> : ""}
 
 			{/* redirects user to login page if they are not signed in */}
-			{user === null ? <Redirect to="/" /> : ""}
+			{/* {user === null ? <Redirect to="/" /> : ""} */}
 
 			<Route exact path="/" render={() => <HomePage />} />
 			<Route
@@ -132,7 +160,17 @@ function App() {
 					</SignUpForm>
 				)}
 			/>
-			<Route exact path="/contacts" render={(props) => <ContactPage />} />
+			<Route
+				exact
+				path="/contacts"
+				render={(props) => (
+					<ContactPage
+						search={search}
+						setSearch={({ target }) => setSearch(target.value)}
+						contacts={shownContacts}
+					/>
+				)}
+			/>
 			<Route
 				exact
 				path="/contacts/add"

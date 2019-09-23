@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
 	Button,
@@ -12,111 +12,88 @@ import {
 	Responsive,
 	Segment,
 	Sidebar,
-	Visibility
+	Visibility,
+	Label,
+	Search
 } from "semantic-ui-react";
 
-// Dummy test!
-const doNothing = () => {
-	console.log("Hey, you did it!");
-};
-
 // Sidebar of the contact page.
-const ContactPageSidebar = () => {
-	const [search, setSearch] = useState('');
-
-	// Updates search value with each keystroke on the contact search bar.
-	const handleSearchChange = (event) => {
-		if (event)
-		{
-			event.preventDefault();
-			console.log(event.log.value);
-			setSearch(event.target.value);
-		}
-	};
-
+const ContactPageMenu = ({ search, setSearch }) => {
 	return (
-			<Sidebar.Pushable as={Segment} style={{minHeight: "100vh"}}>
-				<Sidebar 
-					as={Menu}
-					animation='overlay'
-					icon='labeled'
-					width="wide"
-					visible={true}
-					vertical
-					inverted
-					page
-				>
-					<Menu.Item as="a">
-						<Icon name="Search" />
-						<form>
-							<input
-							value={search}
-							onChange={handleSearchChange}
-							/>
-							  Search for a contact here!
-						</form>
-					</Menu.Item>
-					<Menu.Item as="a">
-						<Icon name="Search" />
-						Misc.
-					</Menu.Item>
-					<Menu.Item as="a">
-						<Icon name="Logout" />
-						Logout
-						<Icon />
-					</Menu.Item>
-				</Sidebar>
+		<Menu fluid widths={3}>
+			<Menu.Item name="Search">
+				<Header sub style={{ padding: ".5em", paddingBottom: "1px" }}>
+					Search
+				</Header>
+				<Search
+					onSearchChange={setSearch}
+					value={search}
+					showNoResults={false}
+				/>
+				{/* <input
+					placeholder="Search your contacts"
+					value={search}
+					onChange={setSearch}
+				/> */}
+			</Menu.Item>
 
-				<Sidebar.Pusher>
-					<Segment>
-						<Header></Header>
-					</Segment>
-				</Sidebar.Pusher>
-			</Sidebar.Pushable>
+			<Menu.Item name="reviews" onClick={() => ""}>
+				Add Contact
+			</Menu.Item>
+
+			<Menu.Item name="upcomingEvents" onClick={() => ""}>
+				Logout
+			</Menu.Item>
+		</Menu>
 	);
 };
 
-const HomepageHeading = () => (
-	<Container text>
-		<Header
-			as="h1"
-			color="purple"
-			content="Behold, your contacts!"
-			inverted
-			style={{
-				fontSize: "4em",
-				fontWeight: "normal",
-				marginBottom: 0,
-				marginTop: "3em"
-			}}	
-		/>
-		<div>
-			<Link to="/signup">
-			<Button primary size="huge">
-				Get Started Tomorrow...
-				<Icon name="right arrow" />
-			</Button>
-		</Link>
-		</div>
-	</Container>
-);
+const ContactPageHeading = ({ shown }) => {
+	const noContactsDisplay = (shown) => {
+		if (shown.length === 0)
+			return <>Yikes, it appears there are no contacts to display!</>;
 
-const ContactPage = () => {
+		return <>{shown}</>;
+	};
 
-    return (
-		<Container>
-			<ContactPageSidebar />
-			<HomepageHeading />
+	return (
+		<Container text>
+			<Header
+				as="h1"
+				color="black"
+				content={noContactsDisplay(shown)}
+				style={{
+					fontSize: "4em",
+					fontWeight: "normal",
+					marginBottom: 0,
+					marginTop: "3em"
+				}}
+			/>
 		</Container>
 	);
 };
 
-{/* <form>
-							<input
-							value={search}
-							onChange={handleSearchChange}
-							/>
-							  Search for a contact here!
-						</form> */}
+const ContactPage = (props) => {
+	const shown = props.contacts.map((contact) => (
+		<h2>
+			{contact.name} - {contact.number}
+		</h2>
+	));
+
+	return (
+		<Container>
+			<ContactPageMenu
+				search={props.search}
+				setSearch={props.setSearch}
+				style={{ boxShadow: "6px 7px 17px 5px rgba(0, 0, 0, 0.38)" }}
+			/>
+			<Segment
+				style={{ boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)" }}
+			>
+				<ContactPageHeading shown={shown} />
+			</Segment>
+		</Container>
+	);
+};
 
 export default ContactPage;
