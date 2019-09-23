@@ -18,6 +18,7 @@ import {
 	Search,
 	Loader
 } from "semantic-ui-react";
+import * as doodle from "../assets/doodlebob.png";
 
 // Sidebar of the contact page.
 const ContactPageMenu = ({ search, setSearch }) => {
@@ -51,7 +52,12 @@ const ContactPageMenu = ({ search, setSearch }) => {
 const ContactPageHeading = ({ shown }) => {
 	const noContactsDisplay = (shown) => {
 		if (shown.length === 0)
-			return <>Yikes, it appears there are no contacts to display!</>;
+			return (
+				<Label size="massive">
+					Yikes, it appears there are no contacts to display!
+					<img src={doodle} />
+				</Label>
+			);
 
 		return <>{shown}</>;
 	};
@@ -64,8 +70,8 @@ const ContactPageHeading = ({ shown }) => {
 				style={{
 					fontSize: "4em",
 					fontWeight: "normal",
-					marginBottom: 0,
-					marginTop: "3em"
+					marginBottom: 0
+					// marginTop: "3em"
 				}}
 			/>
 		</Container>
