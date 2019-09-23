@@ -7,6 +7,7 @@ import HomePage from "./components/HomePage";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from "./components/SignUpForm";
 import ContactPage from "./components/ContactPage";
+import EditForm from "./components/EditForm";
 import "./styles/App.css";
 
 function App() {
@@ -188,9 +189,7 @@ function App() {
 			<Route
 				exact
 				path="/contacts/:id/edit"
-				render={(props) => (
-					<h1>This will show a specific contact edit form</h1>
-				)}
+				render={(props) => <EditForm />}
 			/>
 		</div>
 	);
