@@ -5,6 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node phonebook.js",
+    		"watch": "nodemon index.js",
 		"server": "nodemon server.js"
 	},
 	"repository": {
