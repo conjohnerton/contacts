@@ -16,8 +16,7 @@ const contactSchema = new mongoose.Schema({
   email: String,
   name: String,
   address: String,
-  phone: String,
-  id: Number
+  phone: String
 })
 
 const Contact = mongoose.model('Contact', contactSchema)

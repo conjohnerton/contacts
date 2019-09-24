@@ -15,51 +15,17 @@ app.use(bodyParser.json())
 
 app.use(cors())
 
-
-
 const contacts = []
 
 const generateId = () => {
   const maxId = contacts.length > 0? contacts.length: 0
   return maxId}
 
-
-// app.get('/api/persons', (req, res) => {
-//   res.json(contacts)
-// })
-
 app.get('/api/persons', (req, res) => {
   Contact.find({}).then(contact => {
     res.json(contact)
   })
 })
-
-
-// app.get('/info', (req, res) => {
-// 	res.write(stringy)
-// 	res.write(dateTime)
-// 	res.end()
-// })
-
-
-
-// TODO: update path after establishing database 
-// app.get('/api/persons/:id', (req, res) => {
-// 	const id = Number(req.params.id)
-// 	//console.log(id)
-// 	const contact = contacts.find(contact => contact.id === id)
-
-// 	if (contact)
-// 	{
-// 		res.send(contact) 
-// 	}
-
-// 	else
-// 	{
-// 		res.status(404).end()
-// 	}
-	
-// })
 
 app.get('/api/persons/:id', (req, res) => {
   Contact.findById(req.params.id).then(note => {
@@ -68,25 +34,12 @@ app.get('/api/persons/:id', (req, res) => {
 })
 
 
-// TODO: update path after establishing database 
-// app.delete('/api/persons/:id', (req, res) => 
-// {
-
-// 	const id = Number(req.params.id)
-// 	contacts = contacts.filter(contact => contact.id !== id)
-// 	res.status(204).end()
-	
-
-// })
-
 app.delete('/api/persons/:id', (req, res, next) => {
   Contact.findByIdAndRemove(req.params.id)
     .then(result => {
       res.status(204).end()
     })
     .catch(error => next(error))
-
-    // Remove from contacts array 
 })
 
 // TODO: update path after establishing database 
@@ -147,7 +100,7 @@ app.post('/api/persons', (req, res) => {
   //contacts = contacts.concat(contact)
   contacts.push(contact)
   console.log(contacts.length)
-  console.log(contact)
+  console.log(contacts)
 })
 
 
