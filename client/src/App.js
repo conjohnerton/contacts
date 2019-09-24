@@ -27,6 +27,22 @@ function App() {
 		{
 			name: "Larry BraggardlyHurtleFart",
 			number: "666-666-6667"
+		},
+		{
+			name: "Larry HobbitSon",
+			number: "666-666-6667"
+		},
+		{
+			name: "Larry BraggardlyHurtleFart",
+			number: "666-666-6667"
+		},
+		{
+			name: "Larry HobbitSon",
+			number: "666-666-6667"
+		},
+		{
+			name: "Larry BraggardlyHurtleFart",
+			number: "666-666-6667"
 		}
 	]);
 	const [shownContacts, setShownContacts] = useState([]);
@@ -98,10 +114,7 @@ function App() {
 			const newUser = await signup({ email, password });
 
 			// saves new user to localStorage
-			window.localStorage.setItem(
-				"contactAppUser",
-				JSON.stringify(newUser)
-			);
+			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
 
 			setUser(newUser);
 			setEmail("");

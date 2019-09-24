@@ -1,0 +1,17 @@
+.Card {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.Icon {
+	display: flex;
+	flex-direction: row;
+	/* margin-top: -1em; */
+}
+
+.Info {
+	display: flex;
+	flex-direction: column;
+	align-content: center;
+}

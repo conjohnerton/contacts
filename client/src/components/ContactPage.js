@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import {
 	Button,
 	Container,
@@ -15,19 +15,20 @@ import {
 	Sidebar,
 	Visibility,
 	Dimmer,
+	Placeholder,
+	Modal,
 	Search,
 	Loader
 } from "semantic-ui-react";
+import "../styles/ContactPage.css";
 import * as doodle from "../assets/doodlebob.png";
 
-// Sidebar of the contact page.
+// Menu of the contact page.
 const ContactPageMenu = ({ search, setSearch }) => {
 	return (
 		<Menu fluid widths={3}>
 			<Menu.Item name="Search">
-				{/* <Header sub style={{ padding: ".5em", paddingBottom: "1px" }}> */}
 				<p style={{ paddingRight: ".5em", marginBottom: ".1em" }}>Search</p>
-				{/* </Header> */}
 				<Search
 					onSearchChange={setSearch}
 					value={search}
@@ -36,25 +37,23 @@ const ContactPageMenu = ({ search, setSearch }) => {
 				/>
 			</Menu.Item>
 
-			<Menu.Item name="Add" onClick={() => ""}>
-				<Link to="/contacts/add">Add Contact</Link>
+			<Menu.Item href="/contacts/add" name="Add">
+				Add Contact
 			</Menu.Item>
 
-			<Menu.Item name="Logout" onClick={() => ""}>
-				Logout
-			</Menu.Item>
+			<Menu.Item name="Logout">Log out</Menu.Item>
 		</Menu>
 	);
 };
 
-const ContactPageHeading = ({ shown }) => {
+const ShowsContactsOrYikes = ({ shown }) => {
 	const noContactsDisplay = (shown) => {
 		if (shown.length === 0)
 			return (
-				<Label size="massive">
+				<Header size="massive">
 					Yikes, it appears there are no contacts to display!
 					<img src={doodle} />
-				</Label>
+				</Header>
 			);
 
 		return <>{shown}</>;
@@ -69,7 +68,6 @@ const ContactPageHeading = ({ shown }) => {
 					fontSize: "4em",
 					fontWeight: "normal",
 					marginBottom: 0
-					// marginTop: "3em"
 				}}
 			/>
 		</Container>
@@ -77,47 +75,63 @@ const ContactPageHeading = ({ shown }) => {
 };
 
 const ContactPage = (props) => {
-	const shown = props.contacts.map((contact) => (
-		<Segment>
-			<Label>
-				{contact.name} - {contact.number}
-			</Label>
-			<Icon
-				style={{
-					float: "right",
-					borderRadius: "10px",
-					marginTop: "1em"
-				}}
-				bordered
-				inverted
-				color="pink"
-				name="trash alternate"
-				size="large"
-			></Icon>
-			<Icon
-				style={{
-					float: "right",
-					borderRadius: "10px",
-					marginTop: "1em"
-				}}
-				bordered
-				inverted
-				color="purple"
-				name="edit"
-				size="large"
-			></Icon>
-		</Segment>
-	));
+	const contactCards = (
+		<Grid stackable columns={3}>
+			{props.contacts.map((data) => (
+				<Grid.Column key={data.number}>
+					<Segment
+						color="purple"
+						style={{ borderRadius: "10px" }}
+						className={"Card"}
+						stacked
+					>
+						<Header block>{data.name}</Header>
+						<Header size="tiny" sub>
+							{data.number}
+						</Header>
+						<div className={"Icon"}>
+							<Icon
+								style={{
+									float: "right",
+									borderRadius: "10px",
+									marginTop: "1em",
+									cursor: "pointer"
+								}}
+								bordered
+								inverted
+								color="purple"
+								name="edit"
+							/>
+							<Icon
+								style={{
+									float: "right",
+									borderRadius: "10px",
+									marginTop: "1em",
+									cursor: "pointer"
+								}}
+								bordered
+								inverted
+								color="pink"
+								name="trash alternate"
+							/>
+						</div>
+					</Segment>
+				</Grid.Column>
+			))}
+		</Grid>
+	);
 
 	const loadOrShow = () => {
 		if (!props.loading) {
 			return (
 				<Segment
 					style={{
-						boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)"
+						boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)",
+						display: "flex",
+						overflow: "auto"
 					}}
 				>
-					<ContactPageHeading shown={shown} />
+					<ShowsContactsOrYikes shown={contactCards} />
 				</Segment>
 			);
 		}
@@ -126,10 +140,41 @@ const ContactPage = (props) => {
 			<Segment
 				style={{
 					boxShadow: "-0px 6px 10px 5px rgba(0, 0, 0, 0.1)",
-					minHeight: "50vh"
+					overflow: "auto"
 				}}
 			>
-				<Loader active />
+				<Placeholder fluid>
+					<Placeholder.Header>
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Header>
+					<Placeholder.Paragraph>
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Paragraph>
+					<Placeholder.Header>
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Header>
+					<Placeholder.Paragraph>
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Paragraph>
+					<Placeholder.Header>
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Header>
+					<Placeholder.Paragraph>
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+						<Placeholder.Line />
+					</Placeholder.Paragraph>
+				</Placeholder>
 			</Segment>
 		);
 	};

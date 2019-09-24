@@ -65,7 +65,12 @@ const AddForm = (props) => {
 							// onChange={setPassword}
 						/>
 
-						<Button color="blue" fluid size="large">
+						<Button
+							color="blue"
+							fluid
+							size="large"
+							onClick={() => alert("You clicked add!")}
+						>
 							Add
 						</Button>
 					</Segment>
