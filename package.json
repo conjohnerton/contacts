@@ -5,8 +5,8 @@
 	"main": "server.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
-		"start": "node phonebook.js",
-    		"watch": "nodemon index.js",
+		"start": "node server.js",
+		"watch": "nodemon server.js",
 		"server": "nodemon server.js"
 	},
 	"repository": {
@@ -21,6 +21,8 @@
 	"homepage": "https://github.com/johnnycheadshot/contacts#readme",
 	"dependencies": {
 		"config-js": "^1.1.12",
+		"cors": "^2.8.5",
+		"dotenv": "^8.1.0",
 		"express": "^4.17.1",
 		"mongoose": "^5.7.1"
 	},
