@@ -2,20 +2,19 @@ const mongoose = require("mongoose");
 
 // Create Schema
 const contactSchema = new mongoose.Schema({
-  name: {
-    type: String,
-  },
-  email: {
-    type: String,
-  },
-  address: {
-    type: String,
-  },
-  phone: {
-    type: String,
-  }
+	name: {
+		type: String
+	},
+	email: {
+		type: String
+	},
+	address: {
+		type: String
+	},
+	number: {
+		type: String
+	}
 });
-
 
 const Contact = mongoose.model("Contacts", contactSchema);
 
@@ -29,4 +28,4 @@ contactSchema.set("toJSON", {
 });
 
 // define public interface of the module
-module.exports = mongoose.model("Contacts", contactSchema);
+module.exports = mongoose.model("Contact", contactSchema);

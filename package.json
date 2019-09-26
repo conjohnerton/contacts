@@ -7,7 +7,7 @@
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"start": "node server.js",
 		"watch": "nodemon server.js",
-		"server": "nodemon server.js"
+		"server": "node server.js"
 	},
 	"repository": {
 		"type": "git",
@@ -21,19 +21,16 @@
 	"homepage": "https://github.com/johnnycheadshot/contacts#readme",
 	"dependencies": {
 		"axios": "^0.19.0",
-		"react": "^16.9.0",
-		"react-dom": "^16.9.0",
-		"react-router-dom": "^5.0.1",
-		"react-scripts": "3.1.1",
-		"semantic-ui-css": "^2.4.1",
-		"semantic-ui-react": "^0.88.1",
 		"bcryptjs": "^2.4.3",
-   	 	"concurrently": "^3.6.0",
-    	"config": "^3.0.1",
-    	"express": "^4.16.3",
-    	"jsonwebtoken": "^8.5.0",
-    	"mongoose": "^5.1.6"
-		
+		"concurrently": "^3.6.0",
+		"config": "^3.0.1",
+		"cors": "^2.8.5",
+		"dotenv": "^8.1.0",
+		"express": "^4.16.3",
+		"jsonwebtoken": "^8.5.0",
+		"mongoose": "^5.1.6",
+		"semantic-ui-css": "^2.4.1",
+		"semantic-ui-react": "^0.88.1"
 	},
 	"devDependencies": {
 		"nodemon": "^1.19.2"
