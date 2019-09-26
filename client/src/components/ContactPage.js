@@ -95,23 +95,24 @@ const ContactPage = (props) => {
 									float: "right",
 									borderRadius: "10px",
 									marginTop: "1em",
-									cursor: "pointer"
+									paddingRight: "10px"
 								}}
-								bordered
+								link
+								circular
 								inverted
-								color="purple"
-								name="edit"
+								color="pink"
+								name="pencil"
 							/>
 							<Icon
 								style={{
 									float: "right",
 									borderRadius: "10px",
-									marginTop: "1em",
-									cursor: "pointer"
+									marginTop: "1em"
 								}}
-								bordered
+								link
+								circular
 								inverted
-								color="pink"
+								color="purple"
 								name="trash alternate"
 							/>
 						</div>
