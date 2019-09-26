@@ -10,8 +10,10 @@ const User = require("../../models/User");
 // @access  Public
 router.get("/", auth, (req, res) => {
 	try {
-		const userData = await User.findById(req.user).populate("Contact");
-		res.json(userData);
+		// finds user and returns user data with contacts
+		User.findById(req.user)
+			.populate("Contact")
+			.then((user) => res.json(userData));
 	} catch (err) {
 		res.json(err);
 	}

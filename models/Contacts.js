@@ -16,7 +16,7 @@ const contactSchema = new mongoose.Schema({
 	}
 });
 
-const Contact = mongoose.model("Contacts", contactSchema);
+const Contact = mongoose.model("Contact", contactSchema);
 
 // Safety precaution: format the objects returned by Mongoose
 contactSchema.set("toJSON", {

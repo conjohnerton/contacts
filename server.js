@@ -12,11 +12,8 @@ require("dotenv").config();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "client/build")));
 
-//const morgan = require('morgan')
 const PORT = process.env.PORT || 3001;
 const url = config.get("mongoURI");
-
-console.log("connecting to", url);
 
 mongoose
 	.connect(url, {
@@ -25,7 +22,7 @@ mongoose
 		useCreateIndex: true
 	})
 	.then((result) => {
-		console.log("connected to MongoDB");
+		console.log(`Connected to MongoDB url: ${url}`);
 	})
 	.catch((error) => {
 		console.log("error connecting to MongoDB:", error.message);
@@ -38,8 +35,6 @@ app.use("/api/auth", require("./routes/api/auth"));
 app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname + "/client/build/index.html"));
 });
-//app.use(bodyParser.json());
-//app.use(morgan('combined'))
 
 app.use(cors());
 
