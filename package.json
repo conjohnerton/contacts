@@ -20,11 +20,20 @@
 	},
 	"homepage": "https://github.com/johnnycheadshot/contacts#readme",
 	"dependencies": {
-		"config-js": "^1.1.12",
-		"cors": "^2.8.5",
-		"dotenv": "^8.1.0",
-		"express": "^4.17.1",
-		"mongoose": "^5.7.1"
+		"axios": "^0.19.0",
+		"react": "^16.9.0",
+		"react-dom": "^16.9.0",
+		"react-router-dom": "^5.0.1",
+		"react-scripts": "3.1.1",
+		"semantic-ui-css": "^2.4.1",
+		"semantic-ui-react": "^0.88.1",
+		"bcryptjs": "^2.4.3",
+   	 	"concurrently": "^3.6.0",
+    	"config": "^3.0.1",
+    	"express": "^4.16.3",
+    	"jsonwebtoken": "^8.5.0",
+    	"mongoose": "^5.1.6"
+		
 	},
 	"devDependencies": {
 		"nodemon": "^1.19.2"
