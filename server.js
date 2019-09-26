@@ -31,7 +31,7 @@ mongoose
 
 app.use('/api/contacts', require('./routes/api/contacts'));
 app.use('/api/users', require('./routes/api/users'));
-app.use('/api/users', require('./routes/api/auth'));
+app.use('/api/auth', require('./routes/api/auth'));
 
 
 

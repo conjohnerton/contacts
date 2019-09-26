@@ -1,13 +1,23 @@
 const mongoose = require("mongoose");
 
+// Create Schema
 const contactSchema = new mongoose.Schema({
-	email: String,
-	name: String,
-	address: String,
-	phone: String
+  name: {
+    type: String,
+  },
+  email: {
+    type: String,
+  },
+  address: {
+    type: String,
+  },
+  phone: {
+    type: String,
+  }
 });
 
-const Contact = mongoose.model("Contact", contactSchema);
+
+const Contact = mongoose.model("Contacts", contactSchema);
 
 // Safety precaution: format the objects returned by Mongoose
 contactSchema.set("toJSON", {
@@ -19,4 +29,4 @@ contactSchema.set("toJSON", {
 });
 
 // define public interface of the module
-module.exports = mongoose.model("Contact", contactSchema);
+module.exports = mongoose.model("Contacts", contactSchema);

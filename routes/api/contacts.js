@@ -5,12 +5,15 @@ const auth = require('../../middleware/auth');
 
 router.get('/', (req, res) => {
 	Contact.find()
-	.then(conacts => res.json(contacts));
+	.then(contact => res.json(contact));
 });
 
 router.post('/', auth, (req, res) => {
 	const newContact = new Contact({
-		name: req.body.name
+		name: req.body.name,
+		email: req.body.email,
+		address: req.body.address,
+		phone: req.body.phone
 	})
 	newContact.save().then(contact => res.json(contact));
 });
