@@ -18,31 +18,31 @@ function App() {
 	const [contacts, setContacts] = useState([
 		{
 			name: "Larry Hobbs",
-			number: "666-666-6667"
+			number: "666-666-8888"
 		},
 		{
 			name: "Larry HobbitSon",
-			number: "666-666-6667"
+			number: "666-666-6567"
 		},
 		{
 			name: "Larry BraggardlyHurtleFart",
-			number: "666-666-6667"
+			number: "666-666-1117"
 		},
 		{
-			name: "Larry HobbitSon",
-			number: "666-666-6667"
+			name: "Harry Lobbs",
+			number: "666-33-6667"
 		},
 		{
-			name: "Larry BraggardlyHurtleFart",
-			number: "666-666-6667"
+			name: "Harrison Ford",
+			number: "366-666-6667"
 		},
 		{
-			name: "Larry HobbitSon",
-			number: "666-666-6667"
+			name: "Bingo friend #1 or #2 idr, I have alheimerz",
+			number: "666-666-6647"
 		},
 		{
-			name: "Larry BraggardlyHurtleFart",
-			number: "666-666-6667"
+			name: "Bingo Speaker",
+			number: "666-666-7653"
 		}
 	]);
 	const [shownContacts, setShownContacts] = useState([]);

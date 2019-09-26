@@ -18,11 +18,21 @@ const ContactPageMenu = ({ search, setSearch }) => {
 				/>
 			</Menu.Item>
 
-			<Menu.Item href="/contacts/add" name="Add">
+			<Menu.Item
+				name="Add"
+				link
+				onClick={() => alert("This will let you add a contact!")}
+			>
 				Add Contact
 			</Menu.Item>
 
-			<Menu.Item name="Logout">Log out</Menu.Item>
+			<Menu.Item
+				name="Logout"
+				link
+				onClick={() => alert("This will log you out!")}
+			>
+				Log out
+			</Menu.Item>
 		</Menu>
 	);
 };

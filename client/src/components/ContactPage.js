@@ -1,24 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {
-	Button,
 	Container,
 	Grid,
 	Header,
 	Icon,
-	Image,
-	List,
-	Label,
-	Menu,
-	Responsive,
 	Segment,
-	Sidebar,
-	Visibility,
-	Dimmer,
-	Placeholder,
-	Modal,
-	Search,
-	Loader
+	Placeholder
 } from "semantic-ui-react";
 import ContactPageMenu from "./ContactPageMenu";
 import ShowsContactsOrYikes from "./ShowContactsOrYikes";
