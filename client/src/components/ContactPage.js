@@ -72,7 +72,7 @@ const ContactPage = (props) => {
 		</Grid>
 	);
 
-	const loadOrShow = () => {
+	const renderLoadingOrContacts = () => {
 		if (!props.loading) {
 			return (
 				<Segment
@@ -133,7 +133,7 @@ const ContactPage = (props) => {
 	return (
 		<Container>
 			<ContactPageMenu search={props.search} setSearch={props.setSearch} />
-			{loadOrShow()}
+			{renderLoadingOrContacts()}
 		</Container>
 	);
 };

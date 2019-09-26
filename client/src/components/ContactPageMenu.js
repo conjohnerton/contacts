@@ -1,7 +1,6 @@
 import React from "react";
 import { Menu, Search } from "semantic-ui-react";
 
-// Menu of the contact page.
 const ContactPageMenu = ({ search, setSearch }) => {
 	return (
 		<Menu
