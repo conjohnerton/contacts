@@ -1,3 +1,4 @@
 {
-    "jwtSecret": "sl_myJwtSecret"
+	"mongoURI": "mongodb+srv://fullstack:fullstack123@cluster0-bfddu.mongodb.net/phone_book?retryWrites=true&w=majority",
+	"jwtSecret": "sl_myJwtSecret"
 }

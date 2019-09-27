@@ -1,78 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link, Redirect } from "react-router-dom";
 import {
-	Button,
 	Container,
 	Grid,
 	Header,
 	Icon,
-	Image,
-	List,
-	Label,
-	Menu,
-	Responsive,
 	Segment,
-	Sidebar,
-	Visibility,
-	Dimmer,
-	Placeholder,
-	Modal,
-	Search,
-	Loader
+	Placeholder
 } from "semantic-ui-react";
+import ContactPageMenu from "./ContactPageMenu";
+import ShowsContactsOrYikes from "./ShowContactsOrYikes";
 import "../styles/ContactPage.css";
-import * as doodle from "../assets/doodlebob.png";
-
-// Menu of the contact page.
-const ContactPageMenu = ({ search, setSearch }) => {
-	return (
-		<Menu fluid widths={3}>
-			<Menu.Item name="Search">
-				<p style={{ paddingRight: ".5em", marginBottom: ".1em" }}>Search</p>
-				<Search
-					onSearchChange={setSearch}
-					value={search}
-					showNoResults={false}
-					open={false}
-				/>
-			</Menu.Item>
-
-			<Menu.Item href="/contacts/add" name="Add">
-				Add Contact
-			</Menu.Item>
-
-			<Menu.Item name="Logout">Log out</Menu.Item>
-		</Menu>
-	);
-};
-
-const ShowsContactsOrYikes = ({ shown }) => {
-	const noContactsDisplay = (shown) => {
-		if (shown.length === 0)
-			return (
-				<Header size="massive">
-					Yikes, it appears there are no contacts to display!
-					<img src={doodle} />
-				</Header>
-			);
-
-		return <>{shown}</>;
-	};
-
-	return (
-		<Container text>
-			<Header
-				color="black"
-				content={noContactsDisplay(shown)}
-				style={{
-					fontSize: "4em",
-					fontWeight: "normal",
-					marginBottom: 0
-				}}
-			/>
-		</Container>
-	);
-};
 
 const ContactPage = (props) => {
 	const contactCards = (
@@ -95,23 +33,24 @@ const ContactPage = (props) => {
 									float: "right",
 									borderRadius: "10px",
 									marginTop: "1em",
-									cursor: "pointer"
+									paddingRight: "10px"
 								}}
-								bordered
+								link
+								circular
 								inverted
-								color="purple"
-								name="edit"
+								color="pink"
+								name="pencil"
 							/>
 							<Icon
 								style={{
 									float: "right",
 									borderRadius: "10px",
-									marginTop: "1em",
-									cursor: "pointer"
+									marginTop: "1em"
 								}}
-								bordered
+								link
+								circular
 								inverted
-								color="pink"
+								color="purple"
 								name="trash alternate"
 							/>
 						</div>
@@ -121,7 +60,7 @@ const ContactPage = (props) => {
 		</Grid>
 	);
 
-	const loadOrShow = () => {
+	const renderLoadingOrContacts = () => {
 		if (!props.loading) {
 			return (
 				<Segment
@@ -181,12 +120,8 @@ const ContactPage = (props) => {
 
 	return (
 		<Container>
-			<ContactPageMenu
-				search={props.search}
-				setSearch={props.setSearch}
-				style={{ boxShadow: "6px 7px 17px 5px rgba(0, 0, 0, 0.38)" }}
-			/>
-			{loadOrShow()}
+			<ContactPageMenu search={props.search} setSearch={props.setSearch} />
+			{renderLoadingOrContacts()}
 		</Container>
 	);
 };
