@@ -49,33 +49,15 @@ router.delete("/:id", auth, (req, res) => {
 });
 
 router.patch("/update/:id", auth, (req, res) => {
-	
-	let contactFields = [];
-
-	contactFields.name = req.body.contactName;
-	contactFields.email = req.body.contactEmail;
-	contactFields.address = req.body.address;
-	contactFields.phone = req.body.phone;
-
-	Contact.findOneAndUpdate(
-		{ id: req.body.id},
-		{ $set: contactFields },
-		{ new: true}
-	)
-	.then(contact => {
-		res.json(contact);
-	})
-	.catch(err => console.log(err));
-
-	/*
+		
 	Contact.findById(req.params.id, function(err, contact){
 		if(!contact)
 			res.json({success: false});
 		else
-			Contact.name = req.body.name;
-			Contact.email = req.body.email;
-			Contact.address = req.body.address;
-			Contact.number = req.body.number;
+			contact.name = req.body.name;
+			contact.email = req.body.email;
+			contact.address = req.body.address;
+			contact.number = req.body.number;
 
 			contact.save().then(Contact => {
 				res.json('Contact Updated');
@@ -84,7 +66,7 @@ router.patch("/update/:id", auth, (req, res) => {
 				res.status(400).send("Update Not Possible");
 			});
 	});
-	*/
+	
 });
 
 module.exports = router;
