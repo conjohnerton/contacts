@@ -9,7 +9,7 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
-	/*
+	
 	try {
 		// finds user and returns user data with contacts
 		User.findById(req.user)
@@ -18,13 +18,13 @@ router.get("/", auth, (req, res) => {
 	} catch (err) {
 		res.json(err);
 	}
-	*/
 	
+	/*
 	Contact.find()
 		.then(contacts => res.json(contacts));
 			Contact.findById(req.params.id)
 			.then
-	
+	*/
   }
 );
 
