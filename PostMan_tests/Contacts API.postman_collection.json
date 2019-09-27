@@ -1,0 +1,229 @@
+{
+	"info": {
+		"_postman_id": "b85d7824-82e4-4c54-bbac-af454d9c64d2",
+		"name": "Contacts API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:3001/api/users",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUzYTNmMWNlZmVlMDNiMmI2YTYwZSIsImlhdCI6MTU2OTYwMjExMSwiZXhwIjoxNTY5NjA1NzExfQ.mr5RSrVbEEYPFHFXSn1jWx_6Vu5gueC7Qa3tGok5ruI",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ScottTester\",\n\t\"email\" : \"Thisisatest@test.com\",\n\t\"password\" : \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"users"
+					]
+				},
+				"description": "Creates new user and returns token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/api/users (GET TOKEN FIRST)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUzYTNmMWNlZmVlMDNiMmI2YTYwZSIsImlhdCI6MTU2OTYwMjExMSwiZXhwIjoxNTY5NjA1NzExfQ.mr5RSrVbEEYPFHFXSn1jWx_6Vu5gueC7Qa3tGok5ruI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"ScottTester\",\n\t\"email\" : \"Thisisatest@test.com\",\n\t\"password\" : \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Sends command to list all contacts (requires token)"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/api/auth",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUzYTNmMWNlZmVlMDNiMmI2YTYwZSIsImlhdCI6MTU2OTYwMjExMSwiZXhwIjoxNTY5NjA1NzExfQ.mr5RSrVbEEYPFHFXSn1jWx_6Vu5gueC7Qa3tGok5ruI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\" : \"Thisisatest@test.com\",\n\t\"password\" : \"password\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"auth"
+					]
+				},
+				"description": "Sends username and password, returns token"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/api/contacts (GET TOKEN FIRST)",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUzYTNmMWNlZmVlMDNiMmI2YTYwZSIsImlhdCI6MTU2OTYwMjExMSwiZXhwIjoxNTY5NjA1NzExfQ.mr5RSrVbEEYPFHFXSn1jWx_6Vu5gueC7Qa3tGok5ruI",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"joe dangerman\",\n\t\"email\" : \"MansmellsLikeDanger@fart.com\",\n\t\"address\" : \"Boy wouldnt you like to know\",\n\t\"phone\" : \"yah I think not\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/contacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"contacts"
+					]
+				},
+				"description": "Creates new contact"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/api/contacts/update/5d894b8397a7922e88d35919   (GET TOKEN FIRST)",
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUwOGUzZGYzMjZmMDA4OWExZTU2OCIsImlhdCI6MTU2OTYwMjkyMywiZXhwIjoxNTY5NjA2NTIzfQ.fw39CTvTCtmN_2pgAyatcvb51IdRc6ZpGpJ0bfgG1u0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\" : \"changingthingsup@change.org\",\n\t\"name\" : \"I win\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3001/api/contacts/update/5d894b8397a7922e88d35919",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"contacts",
+						"update",
+						"5d894b8397a7922e88d35919"
+					]
+				},
+				"description": "Updates contact information"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:3001/api/contacts/5d894b8397a7922e88d35919 (GET TOKEN FIRST)",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "x-auth-token",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVkOGUwOGUzZGYzMjZmMDA4OWExZTU2OCIsImlhdCI6MTU2OTYwMjkyMywiZXhwIjoxNTY5NjA2NTIzfQ.fw39CTvTCtmN_2pgAyatcvb51IdRc6ZpGpJ0bfgG1u0",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3001/api/contacts/5d894b8397a7922e88d35919",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3001",
+					"path": [
+						"api",
+						"contacts",
+						"5d894b8397a7922e88d35919"
+					]
+				},
+				"description": "Deletes user"
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
