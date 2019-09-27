@@ -13,16 +13,18 @@ router.get("/", auth, (req, res) => {
 	try {
 		// finds user and returns user data with contacts
 		User.findById(req.user)
-			.populate("Contact")
+			.populate('Contacts')
 			.then((user) => res.json(userData));
 	} catch (err) {
 		res.json(err);
 	}
 	*/
+	
 	Contact.find()
 		.then(contacts => res.json(contacts));
 			Contact.findById(req.params.id)
 			.then
+	
   }
 );
 
