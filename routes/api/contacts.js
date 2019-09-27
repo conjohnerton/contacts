@@ -9,6 +9,7 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
+	/*
 	try {
 		// finds user and returns user data with contacts
 		User.findById(req.user)
@@ -17,7 +18,17 @@ router.get("/", auth, (req, res) => {
 	} catch (err) {
 		res.json(err);
 	}
-});
+	*/
+	Contact.find()
+		.then(contacts => res.json(contacts));
+			Contact.findById(req.params.id)
+			.then
+  }
+);
+
+router.get("/search/:id", auth, (req, res) => {
+	
+})
 
 router.post("/", auth, (req, res) => {
 	const newContact = new Contact({
@@ -37,23 +48,43 @@ router.delete("/:id", auth, (req, res) => {
 		.catch((err) => res.status(404).json({ success: false }));
 });
 
-router.post("/update/:id", auth, (req, res) => {
+router.patch("/update/:id", auth, (req, res) => {
+	
+	let contactFields = [];
+
+	contactFields.name = req.body.contactName;
+	contactFields.email = req.body.contactEmail;
+	contactFields.address = req.body.address;
+	contactFields.phone = req.body.phone;
+
+	Contact.findOneAndUpdate(
+		{ id: req.body.id},
+		{ $set: contactFields },
+		{ new: true}
+	)
+	.then(contact => {
+		res.json(contact);
+	})
+	.catch(err => console.log(err));
+
+	/*
 	Contact.findById(req.params.id, function(err, contact){
 		if(!contact)
-			res.status(404).send("contact is not found");
+			res.json({success: false});
 		else
 			Contact.name = req.body.name;
 			Contact.email = req.body.email;
 			Contact.address = req.body.address;
-			Contact.number = requ.body.number;
+			Contact.number = req.body.number;
 
-			Contact.save().then(Contact => {
+			contact.save().then(Contact => {
 				res.json('Contact Updated');
 			})
 			.catch(err => {
 				res.status(400).send("Update Not Possible");
 			});
 	});
+	*/
 });
 
 module.exports = router;
