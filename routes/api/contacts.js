@@ -9,11 +9,12 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
+	console.log(req.user);
 	// finds user and returns user data with contacts
 	User.findById(req.user.id)
-		.populate("Contact")
+		// .populate("Contact")
 		.then((user) => res.status(200).json(userData))
-		.catch((err) => res.status(404).json(err));
+		.catch((err) => res.status(400).json(err));
 });
 
 router.post("/", auth, (req, res) => {
