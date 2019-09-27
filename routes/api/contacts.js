@@ -24,9 +24,7 @@ router.get("/", auth, async(req, res) => {
 		})
 
 	const OWNER = {
-		id: req.user.id,
-		name: req.user.name,
-		email: req.user.email
+		id: req.user.id
 	};
 
 	await Contact.find({OWNER})
@@ -52,9 +50,7 @@ router.get("/search/:id", auth, (req, res) => {
 router.post("/", auth, (req, res) => {
 
 	const OWNER = {
-		id: req.user.id,
-		name: req.user.name,
-		email: req.user.email
+		id: req.user.id
 	}
 
 	const newContact = new Contact({
