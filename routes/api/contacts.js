@@ -47,15 +47,13 @@ router.get("/search/:id", auth, (req, res) => {});
 router.post("/", auth, (req, res) => {
 	const OWNER = {
 		id: req.user.id,
-		name: req.user.name,
 		email: req.user.email
 	};
 
 	const newContact = new Contact({
 		name: req.body.name,
-		email: req.body.email,
-		address: req.body.address,
-		phone: req.body.phone
+		note: req.body.note,
+		number: req.body.number
 	});
 	newContact.save().then((contact) => res.json(contact));
 });
@@ -70,10 +68,11 @@ router.delete("/:id", auth, (req, res) => {
 
 router.patch("/update/:id", auth, (req, res) => {
 	Contact.findById(req.params.id, function(err, contact) {
-		if (!contact) res.json({ success: false });
-		else contact.name = req.body.name;
+		if (!contact) return res.json({ err, success: false });
+
+		contact.name = req.body.name;
 		contact.email = req.body.email;
-		contact.address = req.body.address;
+		contact.note = req.body.note;
 		contact.number = req.body.number;
 
 		contact
