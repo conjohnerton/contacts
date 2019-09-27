@@ -13,7 +13,17 @@ const contactSchema = new mongoose.Schema({
 	},
 	number: {
 		type: String
-	}
+	},
+	belongsTo: [
+		{
+			email: {
+				type: String
+			},
+			name: {
+				type: String
+			}
+		}
+	]
 });
 
 const Contact = mongoose.model("Contact", contactSchema);
