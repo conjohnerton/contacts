@@ -29,9 +29,7 @@
 		"dotenv": "^8.1.0",
 		"express": "^4.16.3",
 		"jsonwebtoken": "^8.5.0",
-		"mongoose": "^5.1.6",
-		"semantic-ui-css": "^2.4.1",
-		"semantic-ui-react": "^0.88.1"
+		"mongoose": "^5.1.6"
 	},
 	"devDependencies": {
 		"nodemon": "^1.19.2"
