@@ -120,7 +120,11 @@ const ContactPage = (props) => {
 
 	return (
 		<Container>
-			<ContactPageMenu search={props.search} setSearch={props.setSearch} />
+			<ContactPageMenu
+				logout={props.logout}
+				search={props.search}
+				setSearch={props.setSearch}
+			/>
 			{renderLoadingOrContacts()}
 		</Container>
 	);

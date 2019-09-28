@@ -14,37 +14,7 @@ import "./styles/App.css";
 function App() {
 	// state hooks
 	const [user, setUser] = useState(null);
-	// MOCK CONTACTS~!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	const [contacts, setContacts] = useState([
-		{
-			name: "Larry Hobbs",
-			number: "666-666-8888"
-		},
-		{
-			name: "Larry HobbitSon",
-			number: "666-666-6567"
-		},
-		{
-			name: "Larry BraggardlyHurtleFart",
-			number: "666-666-1117"
-		},
-		{
-			name: "Harry Lobbs",
-			number: "666-33-6667"
-		},
-		{
-			name: "Harrison Ford",
-			number: "366-666-6667"
-		},
-		{
-			name: "Bingo friend #1 or #2 idr, I have alheimerz",
-			number: "666-666-6647"
-		},
-		{
-			name: "Bingo Speaker",
-			number: "666-666-7653"
-		}
-	]);
+	const [contacts, setContacts] = useState([]);
 	const [shownContacts, setShownContacts] = useState([]);
 	const [search, setSearch] = useState("");
 	const [error, setError] = useState("");
@@ -89,11 +59,14 @@ function App() {
 
 			// saves new user to localStorage
 			window.localStorage.setItem("contactAppUser", JSON.stringify(user));
+			console.log(user);
 
 			setUser(user);
 			setEmail("");
 			setPassword("");
 		} catch (exception) {
+			console.log(exception);
+
 			setError("Incorrect login credentials, please try again!");
 			setTimeout(() => {
 				setError("");
@@ -127,6 +100,7 @@ function App() {
 		}
 	};
 
+	// logs user out and removes token from localStorage
 	const handleLogout = () => {
 		window.localStorage.removeItem("contactAppUser");
 		setUser(null);
@@ -147,10 +121,8 @@ function App() {
 
 	return (
 		<div className="App">
-			{user !== null ? <p>{user.email} logged in!</p> : ""}
-
 			{/* redirects user to login page if they are not signed in */}
-			{/* {user === null ? <Redirect to="/" /> : ""} */}
+			{user === null ? <Redirect to="/" /> : <Redirect to="/contacts" />}
 
 			<Route exact path="/" render={() => <HomePage />} />
 			<Route
@@ -190,6 +162,7 @@ function App() {
 						setSearch={({ target }) => setSearch(target.value)}
 						contacts={shownContacts}
 						loading={loading}
+						logout={handleLogout}
 					/>
 				)}
 			/>
