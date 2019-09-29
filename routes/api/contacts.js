@@ -41,19 +41,24 @@ router.get("/", auth, (req, res) => {
 
 router.get("/search/:id", auth, (req, res) => {});
 
-router.post("/", auth, (req, res) => {
-	const OWNER = {
-		id: req.user.id,
-		email: req.user.email
-	};
-
+router.post("/", auth, async (req, res) => {
 	const newContact = new Contact({
 		name: req.body.name,
 		note: req.body.note,
-		number: req.body.number,
-		belongsTo: [OWNER]
+		number: req.body.number
 	});
-	newContact.save().then((contact) => res.json(contact));
+
+	try {
+		// verify and get user, then save all details of new contact to user
+		const user = await User.findById(req.user);
+		const contact = await newContact.save();
+
+		// push contact to user and save user
+		user.contacts.push(contact._id);
+		res.json(await user.save());
+	} catch (exception) {
+		res.json(exception);
+	}
 });
 
 router.delete("/:id", auth, (req, res) => {
