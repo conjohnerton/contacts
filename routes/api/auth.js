@@ -23,7 +23,8 @@ router.post("/", (req, res) => {
 	User.findOne({ email })
 		.populate("contacts")
 		.then((user) => {
-			if (!user) return res.status(400).json({ msg: "User Does not exist" });
+			if (!user)
+				return res.status(400).json({ msg: "User Does not exist" });
 
 			// Validate password
 			bcrypt.compare(password, user.password).then((isMatch) => {
