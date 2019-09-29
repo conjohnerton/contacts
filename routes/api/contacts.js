@@ -29,20 +29,29 @@ router.post("/", auth, async (req, res) => {
 		const user = await User.findById(req.user.id);
 		const contact = await newContact.save();
 
-		// push contact to user and save user
+		// push contact to user, save user, then return the thing
 		user.contacts.push(contact.id);
-		res.json(await user.save().populate("contacts"));
+		res.json({ success: true });
 	} catch (exception) {
-		res.json(exception);
+		res.json({ exception, success: false });
 	}
 });
 
-router.delete("/:id", auth, (req, res) => {
-	Contact.findById(req.params.id)
-		.then((contact) =>
-			contact.remove().then(() => res.json({ success: true }))
-		)
-		.catch((err) => res.status(404).json({ success: false }));
+router.delete("/:id", auth, async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id);
+		await Contact.findById(req.params.id).remove();
+
+		// filter out deleted contact
+		user.contacts = user.contacts.filter(
+			(contact) => contact.id != req.params.id
+		);
+
+		await user.save();
+		res.json({ success: true });
+	} catch (exception) {
+		res.json({ exception, success: false });
+	}
 });
 
 router.patch("/update/:id", auth, (req, res) => {
