@@ -21,7 +21,7 @@ router.post("/", (req, res) => {
 
 	// Check for existing user
 	User.findOne({ email })
-		.populate("Contact")
+		.populate("contacts")
 		.then((user) => {
 			if (!user) return res.status(400).json({ msg: "User Does not exist" });
 

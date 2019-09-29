@@ -10,7 +10,7 @@ const User = require("../../models/User");
 // @access  Public
 router.get("/", auth, (req, res) => {
 	User.findById(req.user)
-		.populate("Contact")
+		.populate("contacts")
 		.then((user) => res.json(user))
 		.catch((err) => res.json(err));
 });
@@ -31,7 +31,7 @@ router.post("/", auth, async (req, res) => {
 
 		// push contact to user and save user
 		user.contacts.push(contact.id);
-		res.json(await user.save());
+		res.json(await user.save().populate("contacts"));
 	} catch (exception) {
 		res.json(exception);
 	}
