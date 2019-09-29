@@ -9,7 +9,7 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
-	User.findById(req.user)
+	User.findById(req.user.id)
 		.populate("contacts")
 		.then((user) => res.json(user))
 		.catch((err) => res.json(err));
@@ -26,7 +26,7 @@ router.post("/", auth, async (req, res) => {
 
 	try {
 		// verify and get user, then save all details of new contact to user
-		const user = await User.findById(req.user);
+		const user = await User.findById(req.user.id);
 		const contact = await newContact.save();
 
 		// push contact to user and save user
