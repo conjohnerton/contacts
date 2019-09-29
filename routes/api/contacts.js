@@ -56,17 +56,19 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 router.put("/:id", auth, async (req, res) => {
-	const contact = {
-		name: req.body.name,
+	const contact = new Contact({
 		email: req.body.email,
 		note: req.body.note,
 		number: req.body.number
-	};
+	});
 
 	try {
-		const updatedContact = await Contact.findByIdAndUpdate(contact);
+		const updatedContact = await Contact.findByIdAndUpdate(
+			req.params.id,
+			contact
+		);
 
-		const user = await user.findById(req.user.id);
+		const user = await User.findById(req.user.id);
 		user.contacts = user.contacts.filter(
 			(contact) => contact != req.params.id
 		);
