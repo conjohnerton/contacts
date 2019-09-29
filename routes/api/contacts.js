@@ -54,8 +54,8 @@ router.delete("/:id", auth, async (req, res) => {
 	}
 });
 
-router.patch("/update/:id", auth, (req, res) => {
-	Contact.findById(req.params.id, function(err, contact) {
+router.put("/:id", auth, async (req, res) => {
+	const contact = Contact.findById(req.params.id, function(err, contact) {
 		if (!contact) return res.json({ err, success: false });
 
 		contact.name = req.body.name;
