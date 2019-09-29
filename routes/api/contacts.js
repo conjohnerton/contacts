@@ -13,30 +13,6 @@ router.get("/", auth, (req, res) => {
 		.populate("Contact")
 		.then((user) => res.json(user))
 		.catch((err) => res.json(err));
-	// let contactsArr = [];
-
-	// Contact.find({}).then((contacts) => {
-	// 	contacts.map((contact) => {
-	// 		contact.belongsTo &&
-	// 			contact.belongsTo.map((member) => {
-	// 				if (member.email == req.user.email) {
-	// 					contactsArr.push(contact);
-	// 				}
-	// 			});
-	// 	});
-	// });
-
-	// const OWNER = {
-	// 	id: req.user.id,
-	// 	email: req.user.email
-	// };
-
-	// Contact.find({ OWNER })
-	// 	.then((contacts) => {
-	// 		let finalArr = [contactsArr];
-	// 		res.json(finalArr);
-	// 	})
-	// 	.catch((err) => console.log(err));
 });
 
 router.get("/search/:id", auth, (req, res) => {});
@@ -54,7 +30,7 @@ router.post("/", auth, async (req, res) => {
 		const contact = await newContact.save();
 
 		// push contact to user and save user
-		user.contacts.push(contact._id);
+		user.contacts.push(contact.id);
 		res.json(await user.save());
 	} catch (exception) {
 		res.json(exception);
