@@ -9,30 +9,34 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
-	let contactsArr = [];
+	User.findById(req.user)
+		.populate("Contact")
+		.then((user) => res.json(user))
+		.catch((err) => res.json(err));
+	// let contactsArr = [];
 
-	Contact.find({}).then((contacts) => {
-		contacts.map((contact) => {
-			contact.belongsTo &&
-				contact.belongsTo.map((member) => {
-					if (member.email == req.user.email) {
-						contactsArr.push(contact);
-					}
-				});
-		});
-	});
+	// Contact.find({}).then((contacts) => {
+	// 	contacts.map((contact) => {
+	// 		contact.belongsTo &&
+	// 			contact.belongsTo.map((member) => {
+	// 				if (member.email == req.user.email) {
+	// 					contactsArr.push(contact);
+	// 				}
+	// 			});
+	// 	});
+	// });
 
-	const OWNER = {
-		id: req.user.id,
-		email: req.user.email
-	};
+	// const OWNER = {
+	// 	id: req.user.id,
+	// 	email: req.user.email
+	// };
 
-	Contact.find({ OWNER })
-		.then((contacts) => {
-			let finalArr = [contactsArr];
-			res.json(finalArr);
-		})
-		.catch((err) => console.log(err));
+	// Contact.find({ OWNER })
+	// 	.then((contacts) => {
+	// 		let finalArr = [contactsArr];
+	// 		res.json(finalArr);
+	// 	})
+	// 	.catch((err) => console.log(err));
 });
 
 router.get("/search/:id", auth, (req, res) => {});

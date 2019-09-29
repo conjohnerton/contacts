@@ -20,31 +20,34 @@ router.post("/", (req, res) => {
 	}
 
 	// Check for existing user
-	User.findOne({ email }).then((user) => {
-		if (!user) return res.status(400).json({ msg: "User Does not exist" });
+	User.findOne({ email })
+		.populate("Contact")
+		.then((user) => {
+			if (!user) return res.status(400).json({ msg: "User Does not exist" });
 
-		// Validate password
-		bcrypt.compare(password, user.password).then((isMatch) => {
-			if (!isMatch)
-				return res.status(400).json({ msg: "Invalid credentials" });
+			// Validate password
+			bcrypt.compare(password, user.password).then((isMatch) => {
+				if (!isMatch)
+					return res.status(400).json({ msg: "Invalid credentials" });
 
-			jwt.sign(
-				{ id: user.id },
-				config.get("jwtSecret"),
-				{ expiresIn: 36000000000000000 },
-				(err, token) => {
-					if (err) throw err;
-					res.json({
-						token,
-						user: {
-							id: user.id,
-							email: user.email
-						}
-					});
-				}
-			);
+				jwt.sign(
+					{ id: user.id },
+					config.get("jwtSecret"),
+					{ expiresIn: 36000000000000000 },
+					(err, token) => {
+						if (err) throw err;
+						res.json({
+							token,
+							user: {
+								id: user.id,
+								email: user.email,
+								contacts: user.contacts
+							}
+						});
+					}
+				);
+			});
 		});
-	});
 });
 
 // @route   GET api/auth/user

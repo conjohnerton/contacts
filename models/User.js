@@ -15,7 +15,8 @@ const UserSchema = new Schema({
 	register_date: {
 		type: Date,
 		default: Date.now
-	}
+	},
+	contacts: [{ type: Schema.Types.ObjectId, ref: "Contact" }]
 });
 
 module.exports = User = mongoose.model("User", UserSchema);
