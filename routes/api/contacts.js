@@ -41,7 +41,7 @@ router.post("/", auth, async (req, res) => {
 router.delete("/:id", auth, async (req, res) => {
 	try {
 		const user = await User.findById(req.user.id);
-		await Contact.findById(req.params.id).remove();
+		await Contact.deleteOne({ _id: req.params.id });
 
 		// filter out deleted contact
 		user.contacts = user.contacts.filter(
@@ -56,12 +56,11 @@ router.delete("/:id", auth, async (req, res) => {
 });
 
 router.put("/:id", auth, async (req, res) => {
-	const contact = {
-		name: req.body.name,
+	const contact = new Contact({
 		email: req.body.email,
 		note: req.body.note,
 		number: req.body.number
-	};
+	});
 
 	try {
 		const updatedContact = await Contact.findByIdAndUpdate(
@@ -70,7 +69,6 @@ router.put("/:id", auth, async (req, res) => {
 		);
 
 		const user = await User.findById(req.user.id);
-
 		user.contacts = user.contacts.filter(
 			(contact) => contact != req.params.id
 		);
