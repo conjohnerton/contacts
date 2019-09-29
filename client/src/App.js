@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import login from "./services/login";
 import signup from "./services/signup";
+import addOne from "./services/addOne";
 import HomePage from "./components/HomePage";
 import AddForm from "./components/AddForm";
 import LoginForm from "./components/LoginForm";
@@ -109,6 +110,27 @@ function App(props) {
 		setContacts([]);
 	};
 
+	const handleContactChange = (event) => {
+		event.persist();
+		setContact((values) => ({
+			...values,
+			[event.target.name]: event.target.value
+		}));
+	};
+
+	const addContact = async () => {
+		try {
+			console.log(contact);
+			const didAddUser = await addOne(contact);
+		} catch (err) {
+			console.log(err);
+			setError("Could not add that contact, please try again later.");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
+		}
+	};
+
 	function hasIncompleteInput(email, password) {
 		if (email === "" || password === "") {
 			setError("Please enter a username and password");
@@ -169,11 +191,17 @@ function App(props) {
 					/>
 				)}
 			/>
-			<Route exact path="/contacts/add" render={() => <AddForm />} />
 			<Route
 				exact
-				path="/contacts/:id"
-				render={(props) => <h1>This will show a specific contact</h1>}
+				path="/contacts/add"
+				render={() => (
+					<AddForm
+						contact={contact}
+						setContact={setContact}
+						handleContactChange={handleContactChange}
+						addContact={addContact}
+					/>
+				)}
 			/>
 			<Route
 				exact

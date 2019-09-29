@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 import "../styles/Form.css";
 
-const AddForm = (props) => {
+const AddForm = ({ contact, handleContactChange, addContact }) => {
 	return (
 		<Grid
 			textAlign="center"
@@ -21,7 +21,7 @@ const AddForm = (props) => {
 					Create a new contact
 				</Header>
 
-				<Form size="large">
+				<Form size="large" onSubmit={addContact}>
 					<Segment stacked>
 						<Header textAlign="left" color="black" sub>
 							Name
@@ -30,10 +30,9 @@ const AddForm = (props) => {
 							fluid
 							icon="wheelchair"
 							placeholder="Bo-Bitty-Bob Steggatoxic"
-							type="name"
 							name="name"
-							// value={email}
-							// onChange={setEmail}
+							value={contact.name}
+							onChange={handleContactChange}
 						/>
 
 						<Header textAlign="left" color="black" sub>
@@ -45,9 +44,8 @@ const AddForm = (props) => {
 							iconPosition="right"
 							placeholder="407-412-1234"
 							name="number"
-							type="name"
-							// value={password}
-							// onChange={setPassword}
+							value={contact.number}
+							onChange={handleContactChange}
 						/>
 
 						<Header textAlign="left" color="black" sub>
@@ -59,17 +57,11 @@ const AddForm = (props) => {
 							iconPosition="right"
 							placeholder="Smells just like the retirement home"
 							name="note"
-							type="name"
-							// value={password}
-							// onChange={setPassword}
+							value={contact.note}
+							onChange={handleContactChange}
 						/>
 
-						<Button
-							color="blue"
-							fluid
-							size="large"
-							onClick={() => alert("You clicked add!")}
-						>
+						<Button color="blue" fluid size="large">
 							Add
 						</Button>
 					</Segment>
