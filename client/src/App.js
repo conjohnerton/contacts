@@ -3,6 +3,7 @@ import { Route, Redirect } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import login from "./services/login";
 import signup from "./services/signup";
+import addOne from "./services/addOne";
 import HomePage from "./components/HomePage";
 import AddForm from "./components/AddForm";
 import LoginForm from "./components/LoginForm";
@@ -11,40 +12,10 @@ import ContactPage from "./components/ContactPage";
 import EditForm from "./components/EditForm";
 import "./styles/App.css";
 
-function App() {
+function App(props) {
 	// state hooks
 	const [user, setUser] = useState(null);
-	// MOCK CONTACTS~!!!!!!!!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-	const [contacts, setContacts] = useState([
-		{
-			name: "Larry Hobbs",
-			number: "666-666-8888"
-		},
-		{
-			name: "Larry HobbitSon",
-			number: "666-666-6567"
-		},
-		{
-			name: "Larry BraggardlyHurtleFart",
-			number: "666-666-1117"
-		},
-		{
-			name: "Harry Lobbs",
-			number: "666-33-6667"
-		},
-		{
-			name: "Harrison Ford",
-			number: "366-666-6667"
-		},
-		{
-			name: "Bingo friend #1 or #2 idr, I have alheimerz",
-			number: "666-666-6647"
-		},
-		{
-			name: "Bingo Speaker",
-			number: "666-666-7653"
-		}
-	]);
+	const [contacts, setContacts] = useState([]);
 	const [shownContacts, setShownContacts] = useState([]);
 	const [search, setSearch] = useState("");
 	const [error, setError] = useState("");
@@ -67,7 +38,7 @@ function App() {
 		}
 	}, []);
 
-	// sets shown contacts when search changes
+	// sets shown contacts on search change
 	useEffect(() => {
 		setShownContacts(
 			contacts.filter((contact) =>
@@ -89,11 +60,15 @@ function App() {
 
 			// saves new user to localStorage
 			window.localStorage.setItem("contactAppUser", JSON.stringify(user));
+			console.log(user);
 
 			setUser(user);
+			setContacts(user.contacts);
 			setEmail("");
 			setPassword("");
 		} catch (exception) {
+			console.log(exception);
+
 			setError("Incorrect login credentials, please try again!");
 			setTimeout(() => {
 				setError("");
@@ -117,6 +92,7 @@ function App() {
 			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
 
 			setUser(newUser);
+			setContacts([]);
 			setEmail("");
 			setPassword("");
 		} catch (exception) {
@@ -127,9 +103,32 @@ function App() {
 		}
 	};
 
+	// logs user out and removes token from localStorage
 	const handleLogout = () => {
 		window.localStorage.removeItem("contactAppUser");
 		setUser(null);
+		setContacts([]);
+	};
+
+	const handleContactChange = (event) => {
+		event.persist();
+		setContact((values) => ({
+			...values,
+			[event.target.name]: event.target.value
+		}));
+	};
+
+	const addContact = async () => {
+		try {
+			console.log(contact);
+			const didAddUser = await addOne(contact);
+		} catch (err) {
+			console.log(err);
+			setError("Could not add that contact, please try again later.");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
+		}
 	};
 
 	function hasIncompleteInput(email, password) {
@@ -147,10 +146,8 @@ function App() {
 
 	return (
 		<div className="App">
-			{user !== null ? <p>{user.email} logged in!</p> : ""}
-
 			{/* redirects user to login page if they are not signed in */}
-			{/* {user === null ? <Redirect to="/" /> : ""} */}
+			{user === null ? <Redirect to="/" /> : <Redirect to="/contacts" />}
 
 			<Route exact path="/" render={() => <HomePage />} />
 			<Route
@@ -190,14 +187,21 @@ function App() {
 						setSearch={({ target }) => setSearch(target.value)}
 						contacts={shownContacts}
 						loading={loading}
+						logout={handleLogout}
 					/>
 				)}
 			/>
-			<Route exact path="/contacts/add" render={() => <AddForm />} />
 			<Route
 				exact
-				path="/contacts/:id"
-				render={(props) => <h1>This will show a specific contact</h1>}
+				path="/contacts/add"
+				render={() => (
+					<AddForm
+						contact={contact}
+						setContact={setContact}
+						handleContactChange={handleContactChange}
+						addContact={addContact}
+					/>
+				)}
 			/>
 			<Route
 				exact

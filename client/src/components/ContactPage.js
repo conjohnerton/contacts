@@ -1,5 +1,4 @@
 import React from "react";
-import { Link, Redirect } from "react-router-dom";
 import {
 	Container,
 	Grid,
@@ -120,7 +119,11 @@ const ContactPage = (props) => {
 
 	return (
 		<Container>
-			<ContactPageMenu search={props.search} setSearch={props.setSearch} />
+			<ContactPageMenu
+				logout={props.logout}
+				search={props.search}
+				setSearch={props.setSearch}
+			/>
 			{renderLoadingOrContacts()}
 		</Container>
 	);

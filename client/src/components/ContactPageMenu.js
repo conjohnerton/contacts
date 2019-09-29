@@ -1,7 +1,8 @@
 import React from "react";
+import { Route } from "react-router-dom";
 import { Menu, Search } from "semantic-ui-react";
 
-const ContactPageMenu = ({ search, setSearch }) => {
+const ContactPageMenu = ({ search, setSearch, logout, history }) => {
 	return (
 		<Menu
 			fluid
@@ -18,19 +19,19 @@ const ContactPageMenu = ({ search, setSearch }) => {
 				/>
 			</Menu.Item>
 
-			<Menu.Item
-				name="Add"
-				link
-				onClick={() => alert("This will let you add a contact!")}
-			>
-				Add Contact
-			</Menu.Item>
+			<Route
+				render={({ history }) => (
+					<Menu.Item
+						name="Add"
+						link
+						onClick={() => history.push("/contacts/add")}
+					>
+						Add Contact
+					</Menu.Item>
+				)}
+			/>
 
-			<Menu.Item
-				name="Logout"
-				link
-				onClick={() => alert("This will log you out!")}
-			>
+			<Menu.Item name="Logout" link onClick={() => logout()}>
 				Log out
 			</Menu.Item>
 		</Menu>

@@ -9,32 +9,76 @@ const User = require("../../models/User");
 // @desc		Get all contacts from user
 // @access  Public
 router.get("/", auth, (req, res) => {
+	User.findById(req.user.id)
+		.populate("contacts")
+		.then((user) => res.json(user))
+		.catch((err) => res.json(err));
+});
+
+router.get("/search/:id", auth, (req, res) => {});
+
+router.post("/", auth, async (req, res) => {
+	const newContact = new Contact({
+		name: req.body.name,
+		note: req.body.note,
+		number: req.body.number
+	});
+
 	try {
-		// finds user and returns user data with contacts
-		User.findById(req.user)
-			.populate("Contact")
-			.then((user) => res.json(userData));
-	} catch (err) {
-		res.json(err);
+		// verify and get user, then save all details of new contact to user
+		const user = await User.findById(req.user.id);
+		const contact = await newContact.save();
+
+		// push contact to user, save user, then return the thing
+		user.contacts.push(contact.id);
+		await user.save();
+		res.json({ success: true });
+	} catch (exception) {
+		res.json({ exception, success: false });
 	}
 });
 
-router.post("/", auth, (req, res) => {
-	const newContact = new Contact({
-		name: req.body.name,
-		email: req.body.email,
-		address: req.body.address,
-		phone: req.body.phone
-	});
-	newContact.save().then((contact) => res.json(contact));
+router.delete("/:id", auth, async (req, res) => {
+	try {
+		const user = await User.findById(req.user.id);
+		await Contact.findById(req.params.id).remove();
+
+		// filter out deleted contact
+		user.contacts = user.contacts.filter(
+			(contact) => contact.id != req.params.id
+		);
+
+		await user.save();
+		res.json({ success: true });
+	} catch (exception) {
+		res.json({ exception, success: false });
+	}
 });
 
-router.delete("/:id", auth, (req, res) => {
-	Contact.findById(req.params.id)
-		.then((contact) =>
-			contact.remove().then(() => res.json({ success: true }))
-		)
-		.catch((err) => res.status(404).json({ success: false }));
+router.put("/:id", auth, async (req, res) => {
+	const contact = new Contact({
+		email: req.body.email,
+		note: req.body.note,
+		number: req.body.number
+	});
+
+	try {
+		const updatedContact = await Contact.findByIdAndUpdate(
+			req.params.id,
+			contact
+		);
+
+		const user = await User.findById(req.user.id);
+		user.contacts = user.contacts.filter(
+			(contact) => contact != req.params.id
+		);
+
+		user.contacts.push(updatedContact);
+		await user.save();
+		res.json({ success: true });
+	} catch (exception) {
+		res.json({ success: false });
+	}
 });
 
 module.exports = router;

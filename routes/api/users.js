@@ -11,11 +11,13 @@ const User = require("../../models/User");
 // @desc    Register new user
 // @access  Public
 router.post("/", (req, res) => {
-	const { name, email, password } = req.body;
+	const { email, password } = req.body;
 
 	// Simple validation
-	if (!name || !email || !password) {
-		return res.status(400).json({ msg: "Please enter all fields" });
+	if (!email || !password) {
+		return res
+			.status(400)
+			.json({ email, password, msg: "Please enter all fields." });
 	}
 
 	// Check for existing user
@@ -27,7 +29,6 @@ router.post("/", (req, res) => {
 					.json({ msg: "User with that email already exists" });
 
 			const newUser = new User({
-				name,
 				email,
 				password
 			});
@@ -41,14 +42,13 @@ router.post("/", (req, res) => {
 						jwt.sign(
 							{ id: user.id },
 							config.get("jwtSecret"),
-							{ expiresIn: 3600 },
+							{ expiresIn: 36000000000000000 },
 							(err, token) => {
 								if (err) throw err;
 								res.json({
 									token,
 									user: {
 										id: user.id,
-										name: user.name,
 										email: user.email
 									}
 								});
