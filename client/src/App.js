@@ -45,7 +45,7 @@ function App(props) {
 				contact.name.toUpperCase().includes(search.toUpperCase())
 			)
 		);
-	}, [search]);
+	}, [search, contacts]);
 
 	// gets user response from given data and sets current user or sets error message
 	const handleLogin = async (event) => {
@@ -121,7 +121,7 @@ function App(props) {
 	const addContact = async () => {
 		try {
 			console.log(contact);
-			const didAddUser = await addOne(contact);
+			const didAddUser = await addOne(contact, contact.token);
 		} catch (err) {
 			console.log(err);
 			setError("Could not add that contact, please try again later.");
