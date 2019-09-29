@@ -57,18 +57,17 @@ router.delete("/:id", auth, async (req, res) => {
 
 router.put("/:id", auth, async (req, res) => {
 	try {
+		await Contact.deleteOne({ _id: req.params.id });
 		const newContact = new Contact({
 			name: req.body.name,
 			number: req.body.number,
 			note: req.body.number
 		});
 
-		const updatedContact = await Contact.updateOne(
-			{ _id: req.params.id },
-			newContact
-		);
+		const updatedContact = await newContact.save();
 
 		let user = await User.findById(req.user.id);
+
 		user.contacts = user.contacts.filter(
 			(contact) => contact != req.params.id
 		);
@@ -76,8 +75,8 @@ router.put("/:id", auth, async (req, res) => {
 		user.contacts.push(updatedContact);
 		await user.save();
 
-		user = await User.findById(req.user.id);
-		res.json({ success: true });
+		user = await User.findById(req.user.id).populate("contacts");
+		res.json({ user, success: true });
 	} catch (exception) {
 		res.json({ success: false });
 	}
