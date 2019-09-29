@@ -11,10 +11,843 @@ import ContactPage from "./components/ContactPage";
 import EditForm from "./components/EditForm";
 import "./styles/App.css";
 
-function App() {
+function App(props) {
 	// state hooks
 	const [user, setUser] = useState(null);
-	const [contacts, setContacts] = useState([]);
+	const [contacts, setContacts] = useState([
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+		{
+			name: "bob",
+			number: "999-994-4334"
+		},
+	]);
 	const [shownContacts, setShownContacts] = useState([]);
 	const [search, setSearch] = useState("");
 	const [error, setError] = useState("");
@@ -37,7 +870,7 @@ function App() {
 		}
 	}, []);
 
-	// sets shown contacts when search changes
+	// sets shown contacts on search change
 	useEffect(() => {
 		setShownContacts(
 			contacts.filter((contact) =>
@@ -62,6 +895,7 @@ function App() {
 			console.log(user);
 
 			setUser(user);
+			setContacts(user.contacts);
 			setEmail("");
 			setPassword("");
 		} catch (exception) {
@@ -90,6 +924,7 @@ function App() {
 			window.localStorage.setItem("contactAppUser", JSON.stringify(newUser));
 
 			setUser(newUser);
+			setContacts([]);
 			setEmail("");
 			setPassword("");
 		} catch (exception) {
@@ -104,6 +939,7 @@ function App() {
 	const handleLogout = () => {
 		window.localStorage.removeItem("contactAppUser");
 		setUser(null);
+		setContacts([]);
 	};
 
 	function hasIncompleteInput(email, password) {

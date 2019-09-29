@@ -8,10 +8,10 @@ const User = require("../../models/User");
 // @route   GET api/contacts
 // @desc		Get all contacts from user
 // @access  Public
-router.get("/", auth, async (req, res) => {
+router.get("/", auth, (req, res) => {
 	let contactsArr = [];
 
-	await Contact.find({}).then((contacts) => {
+	Contact.find({}).then((contacts) => {
 		contacts.map((contact) => {
 			contact.belongsTo &&
 				contact.belongsTo.map((member) => {
@@ -27,19 +27,12 @@ router.get("/", auth, async (req, res) => {
 		email: req.user.email
 	};
 
-	await Contact.find({ OWNER })
+	Contact.find({ OWNER })
 		.then((contacts) => {
 			let finalArr = [contactsArr];
 			res.json(finalArr);
 		})
 		.catch((err) => console.log(err));
-
-	/*
-	Contact.find()
-		.then(contacts => res.json(contacts));
-			Contact.findById(req.params.id)
-			.then
-	*/
 });
 
 router.get("/search/:id", auth, (req, res) => {});
@@ -53,7 +46,8 @@ router.post("/", auth, (req, res) => {
 	const newContact = new Contact({
 		name: req.body.name,
 		note: req.body.note,
-		number: req.body.number
+		number: req.body.number,
+		belongsTo: [OWNER]
 	});
 	newContact.save().then((contact) => res.json(contact));
 });

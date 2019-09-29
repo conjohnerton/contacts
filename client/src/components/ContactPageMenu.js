@@ -1,8 +1,8 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { Menu, Search } from "semantic-ui-react";
 
-const ContactPageMenu = ({ search, setSearch, logout }) => {
+const ContactPageMenu = ({ search, setSearch, logout, history }) => {
 	return (
 		<Menu
 			fluid
@@ -19,13 +19,17 @@ const ContactPageMenu = ({ search, setSearch, logout }) => {
 				/>
 			</Menu.Item>
 
-			<Menu.Item
-				name="Add"
-				link
-				onClick={() => <Redirect to="/contacts/add" />}
-			>
-				Add Contact
-			</Menu.Item>
+			<Route
+				render={({ history }) => (
+					<Menu.Item
+						name="Add"
+						link
+						onClick={() => history.push("/contacts/add")}
+					>
+						Add Contact
+					</Menu.Item>
+				)}
+			/>
 
 			<Menu.Item name="Logout" link onClick={() => logout()}>
 				Log out

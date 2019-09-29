@@ -29,7 +29,6 @@ const AddForm = (props) => {
 						<Form.Input
 							fluid
 							icon="wheelchair"
-							iconPosition="right"
 							placeholder="Bo-Bitty-Bob Steggatoxic"
 							type="name"
 							name="name"
