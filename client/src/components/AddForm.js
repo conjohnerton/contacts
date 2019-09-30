@@ -9,7 +9,7 @@ import {
 } from "semantic-ui-react";
 import "../styles/Form.css";
 
-const AddForm = ({ contact, handleContactChange, addContact }) => {
+const AddForm = ({ contact, handleContactChange, addContact, children }) => {
 	return (
 		<Grid
 			textAlign="center"
@@ -20,6 +20,8 @@ const AddForm = ({ contact, handleContactChange, addContact }) => {
 				<Header as="h2" color="blue" textAlign="center">
 					Create a new contact
 				</Header>
+
+				{children}
 
 				<Form size="large" onSubmit={addContact}>
 					<Segment stacked>

@@ -22,7 +22,9 @@ const EditForm = (props) => {
 					Create a new contact
 				</Header>
 
-				<Form size="large">
+				{props.children}
+
+				<Form size="large" onSubmit={props.submitEdit}>
 					<Segment stacked>
 						<Header textAlign="left" color="black" sub>
 							Name
@@ -30,12 +32,11 @@ const EditForm = (props) => {
 						<Form.Input
 							fluid
 							icon="wheelchair"
-							iconPosition="right"
 							placeholder="Bo-Bitty-Bob Steggatoxic"
 							type="name"
 							name="name"
-							// value={email}
-							// onChange={setEmail}
+							value={props.contact.name}
+							onChange={props.handleContactChange}
 						/>
 
 						<Header textAlign="left" color="black" sub>
@@ -44,12 +45,11 @@ const EditForm = (props) => {
 						<Form.Input
 							fluid
 							icon="phone square"
-							iconPosition="right"
 							placeholder="407-412-1234"
 							name="number"
-							type="name"
-							// value={password}
-							// onChange={setPassword}
+							type="text"
+							value={props.contact.number}
+							onChange={props.handleContactChange}
 						/>
 
 						<Header textAlign="left" color="black" sub>
@@ -58,12 +58,11 @@ const EditForm = (props) => {
 						<Form.Input
 							fluid
 							icon="sticky note"
-							iconPosition="right"
 							placeholder="Smells just like the retirement home"
 							name="note"
-							type="name"
-							// value={password}
-							// onChange={setPassword}
+							type="text"
+							value={props.contact.note}
+							onChange={props.handleContactChange}
 						/>
 
 						<Button color="blue" fluid size="large">

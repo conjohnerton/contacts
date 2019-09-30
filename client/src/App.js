@@ -5,6 +5,7 @@ import { Message } from "semantic-ui-react";
 import login from "./services/login";
 import signup from "./services/signup";
 import addOne from "./services/addOne";
+import edit from "./services/editContact";
 import getContacts from "./services/getContacts";
 import HomePage from "./components/HomePage";
 import AddForm from "./components/AddForm";
@@ -50,14 +51,14 @@ function App(props) {
 		fetchContacts();
 	}, []);
 
-	// sets shown contacts on search change
+	// search filter!!!
 	useEffect(() => {
 		setShownContacts(
 			contacts.filter((contact) =>
 				contact.name.toUpperCase().includes(search.toUpperCase())
 			)
 		);
-	}, [search]);
+	}, [search, contacts]);
 
 	// gets user response from given data and sets current user or sets error message
 	const handleLogin = async (event) => {
@@ -131,7 +132,10 @@ function App(props) {
 
 	const addContact = async () => {
 		if (!contact.name) {
-			alert("Enter a name!");
+			setError("Add a valid name!.");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
 			return;
 		}
 
@@ -156,6 +160,42 @@ function App(props) {
 				setError("");
 			}, 3000);
 		}
+	};
+
+	const editContact = async () => {
+		if (!contact.name) {
+			alert("Enter a valid name");
+			return;
+		}
+
+		console.log("in the edit contact");
+
+		try {
+			const editedUser = await edit(contact, user.token);
+
+			if (editedUser.success) {
+				setContacts(contacts.concat(contact));
+				setContact({});
+				props.history.push("/contacts");
+				return;
+			}
+
+			props.history.push("/contacts");
+			setError("Could not edit that contact");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
+		} catch (err) {
+			setError("Could not edit that contact, please try again later.");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
+		}
+	};
+
+	const goToEdit = async (data) => {
+		setContact(data);
+		props.history.push(`/contacts/${data.id}/edit`);
 	};
 
 	function hasIncompleteInput(email, password) {
@@ -215,6 +255,7 @@ function App(props) {
 						contacts={shownContacts}
 						loading={loading}
 						logout={handleLogout}
+						editContact={goToEdit}
 					/>
 				)}
 			/>
@@ -227,13 +268,23 @@ function App(props) {
 						setContact={setContact}
 						handleContactChange={handleContactChange}
 						addContact={addContact}
-					/>
+					>
+						{renderError}
+					</AddForm>
 				)}
 			/>
 			<Route
 				exact
 				path="/contacts/:id/edit"
-				render={(props) => <EditForm />}
+				render={(props) => (
+					<EditForm
+						contact={contact}
+						handleContactChange={handleContactChange}
+						submitEdit={editContact}
+					>
+						{renderError}
+					</EditForm>
+				)}
 			/>
 		</div>
 	);

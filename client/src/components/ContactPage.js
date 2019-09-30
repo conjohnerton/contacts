@@ -15,7 +15,7 @@ const ContactPage = (props) => {
 	const contactCards = (
 		<Grid stackable columns={3}>
 			{props.contacts.map((data) => (
-				<Grid.Column key={data.number}>
+				<Grid.Column key={data.id}>
 					<Segment
 						color="purple"
 						style={{ borderRadius: "10px" }}
@@ -39,7 +39,9 @@ const ContactPage = (props) => {
 								inverted
 								color="pink"
 								name="pencil"
+								onClick={() => props.editContact(data)}
 							/>
+
 							<Icon
 								style={{
 									float: "right",
@@ -51,6 +53,7 @@ const ContactPage = (props) => {
 								inverted
 								color="purple"
 								name="trash alternate"
+								onClick={() => alert("deleted!")}
 							/>
 						</div>
 					</Segment>
