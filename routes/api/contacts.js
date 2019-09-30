@@ -61,7 +61,7 @@ router.put("/:id", auth, async (req, res) => {
 		const newContact = new Contact({
 			name: req.body.name,
 			number: req.body.number,
-			note: req.body.number
+			note: req.body.note
 		});
 
 		const updatedContact = await newContact.save();
