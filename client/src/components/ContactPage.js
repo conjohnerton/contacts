@@ -5,7 +5,8 @@ import {
 	Header,
 	Icon,
 	Segment,
-	Placeholder
+	Placeholder,
+	Popup
 } from "semantic-ui-react";
 import ContactPageMenu from "./ContactPageMenu";
 import ShowsContactsOrYikes from "./ShowContactsOrYikes";
@@ -27,6 +28,23 @@ const ContactPage = (props) => {
 							{data.number}
 						</Header>
 						<div className={"Icon"}>
+							<Popup
+								trigger={
+									<Icon
+										name="sticky note "
+										style={{
+											float: "right",
+											borderRadius: "10px",
+											marginTop: "1em",
+											paddingRight: "10px"
+										}}
+										circular
+										inverted
+										color="teal"
+									/>
+								}
+								content={data.note}
+							/>
 							<Icon
 								style={{
 									float: "right",
@@ -53,7 +71,7 @@ const ContactPage = (props) => {
 								inverted
 								color="purple"
 								name="trash alternate"
-								onClick={() => alert("deleted!")}
+								onClick={() => props.deleteContact(data.id)}
 							/>
 						</div>
 					</Segment>

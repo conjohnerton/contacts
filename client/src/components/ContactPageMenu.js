@@ -2,7 +2,7 @@ import React from "react";
 import { Route } from "react-router-dom";
 import { Menu, Search } from "semantic-ui-react";
 
-const ContactPageMenu = ({ search, setSearch, logout, history }) => {
+const ContactPageMenu = ({ search, setSearch, logout }) => {
 	return (
 		<Menu
 			fluid

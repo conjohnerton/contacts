@@ -6,6 +6,7 @@ import login from "./services/login";
 import signup from "./services/signup";
 import addOne from "./services/addOne";
 import edit from "./services/editContact";
+import deleteContact from "./services/delete";
 import getContacts from "./services/getContacts";
 import HomePage from "./components/HomePage";
 import AddForm from "./components/AddForm";
@@ -132,7 +133,7 @@ function App(props) {
 
 	const addContact = async () => {
 		if (!contact.name) {
-			setError("Add a valid name!.");
+			setError("Rata-tap-tap! Enter a valid namey-flap!");
 			setTimeout(() => {
 				setError("");
 			}, 3000);
@@ -164,29 +165,30 @@ function App(props) {
 
 	const editContact = async () => {
 		if (!contact.name) {
-			alert("Enter a valid name");
+			setError("Rata-tap-tap! Enter a valid namey-flap!");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
 			return;
 		}
 
-		console.log("in the edit contact");
-
 		try {
 			const editedUser = await edit(contact, user.token);
-
+			console.log(editedUser);
 			if (editedUser.success) {
-				setContacts(contacts.concat(contact));
+				setContacts(editedUser.user.contacts);
 				setContact({});
 				props.history.push("/contacts");
 				return;
 			}
 
 			props.history.push("/contacts");
-			setError("Could not edit that contact");
+			setError("Could not edit that contact, honey.");
 			setTimeout(() => {
 				setError("");
 			}, 3000);
 		} catch (err) {
-			setError("Could not edit that contact, please try again later.");
+			setError("Couldn't edit that honey, please try again later.");
 			setTimeout(() => {
 				setError("");
 			}, 3000);
@@ -198,9 +200,24 @@ function App(props) {
 		props.history.push(`/contacts/${data.id}/edit`);
 	};
 
+	const deleteAndChangeState = async (id) => {
+		try {
+			const didDeleteContact = await deleteContact(id, user.token);
+
+			if (didDeleteContact.success) {
+				setContacts(contacts.filter((c) => c.id != id));
+			}
+		} catch (err) {
+			setError("We couldn't delete that honey, try again later!");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
+		}
+	};
+
 	function hasIncompleteInput(email, password) {
 		if (email === "" || password === "") {
-			setError("Please enter a username and password");
+			setError("Enter both an email and password... Thanks! :)");
 			setTimeout(() => setError(""), 5000);
 			return true;
 		}
@@ -256,6 +273,7 @@ function App(props) {
 						loading={loading}
 						logout={handleLogout}
 						editContact={goToEdit}
+						deleteContact={deleteAndChangeState}
 					/>
 				)}
 			/>
