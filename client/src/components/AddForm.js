@@ -30,6 +30,7 @@ const AddForm = ({ contact, handleContactChange, addContact }) => {
 							fluid
 							icon="wheelchair"
 							placeholder="Bo-Bitty-Bob Steggatoxic"
+							type="name"
 							name="name"
 							value={contact.name}
 							onChange={handleContactChange}
@@ -41,9 +42,9 @@ const AddForm = ({ contact, handleContactChange, addContact }) => {
 						<Form.Input
 							fluid
 							icon="phone square"
-							iconPosition="right"
 							placeholder="407-412-1234"
 							name="number"
+							type="text"
 							value={contact.number}
 							onChange={handleContactChange}
 						/>
@@ -54,8 +55,8 @@ const AddForm = ({ contact, handleContactChange, addContact }) => {
 						<Form.Input
 							fluid
 							icon="sticky note"
-							iconPosition="right"
 							placeholder="Smells just like the retirement home"
+							type="note"
 							name="note"
 							value={contact.note}
 							onChange={handleContactChange}

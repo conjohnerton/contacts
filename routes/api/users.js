@@ -49,7 +49,8 @@ router.post("/", (req, res) => {
 									token,
 									user: {
 										id: user.id,
-										email: user.email
+										email: user.email,
+										contacts: []
 									}
 								});
 							}

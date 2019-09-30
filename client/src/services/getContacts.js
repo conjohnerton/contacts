@@ -1,8 +1,8 @@
 import axios from "axios";
 const baseUrl = "/api/contacts";
 
-const addOne = async (contactDetails, authToken) => {
-	const response = await axios.post(baseUrl, contactDetails, {
+const getContacts = async (authToken) => {
+	const response = await axios.get(baseUrl, {
 		headers: {
 			"x-auth-token": authToken
 		}
@@ -10,4 +10,4 @@ const addOne = async (contactDetails, authToken) => {
 	return response.data;
 };
 
-export default addOne;
+export default getContacts;

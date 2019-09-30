@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { withRouter } from "react-router-dom";
 import { Route, Redirect } from "react-router-dom";
 import { Message } from "semantic-ui-react";
 import login from "./services/login";
 import signup from "./services/signup";
 import addOne from "./services/addOne";
+import getContacts from "./services/getContacts";
 import HomePage from "./components/HomePage";
 import AddForm from "./components/AddForm";
 import LoginForm from "./components/LoginForm";
@@ -30,22 +32,31 @@ function App(props) {
 			setLoading(false);
 		}, 1000);
 
-		const loggedUserJSON = window.localStorage.getItem("contactAppUser");
+		async function fetchContacts() {
+			const loggedUserJSON = window.localStorage.getItem("contactAppUser");
 
-		if (loggedUserJSON) {
-			const user = JSON.parse(loggedUserJSON);
-			setUser(user);
+			try {
+				if (loggedUserJSON) {
+					const user = JSON.parse(loggedUserJSON);
+					const userData = await getContacts(user.token);
+					setUser(user);
+					setContacts(userData.contacts);
+				}
+			} catch (err) {
+				alert(err);
+			}
 		}
+		fetchContacts();
 	}, []);
 
 	// sets shown contacts on search change
-	useEffect(() => {
-		setShownContacts(
-			contacts.filter((contact) =>
-				contact.name.toUpperCase().includes(search.toUpperCase())
-			)
-		);
-	}, [search, contacts]);
+	// useEffect(() => {
+	// 	setShownContacts(
+	// 		contacts.filter((contact) =>
+	// 			contact.name.toUpperCase().includes(search.toUpperCase())
+	// 		)
+	// 	);
+	// }, [search]);
 
 	// gets user response from given data and sets current user or sets error message
 	const handleLogin = async (event) => {
@@ -60,15 +71,13 @@ function App(props) {
 
 			// saves new user to localStorage
 			window.localStorage.setItem("contactAppUser", JSON.stringify(user));
-			console.log(user);
 
-			setUser(user);
-			setContacts(user.contacts);
+			setUser(user.user);
+			setContacts(user.user.contacts);
 			setEmail("");
 			setPassword("");
+			props.history.push("/contacts");
 		} catch (exception) {
-			console.log(exception);
-
 			setError("Incorrect login credentials, please try again!");
 			setTimeout(() => {
 				setError("");
@@ -95,6 +104,7 @@ function App(props) {
 			setContacts([]);
 			setEmail("");
 			setPassword("");
+			props.history.push("/contacts");
 		} catch (exception) {
 			setError("Could not sign you up, please try again.");
 			setTimeout(() => {
@@ -119,11 +129,27 @@ function App(props) {
 	};
 
 	const addContact = async () => {
+		if (!contact.name) {
+			alert("Enter a name!");
+			return;
+		}
+
 		try {
-			console.log(contact);
-			const didAddUser = await addOne(contact, contact.token);
+			const didAddUser = await addOne(contact, user.token);
+
+			if (didAddUser.success) {
+				setContacts(contacts.concat(contact));
+				setContact({});
+				props.history.push("/contacts");
+				return;
+			}
+
+			props.history.push("/contacts");
+			setError("Could not add that contact");
+			setTimeout(() => {
+				setError("");
+			}, 3000);
 		} catch (err) {
-			console.log(err);
 			setError("Could not add that contact, please try again later.");
 			setTimeout(() => {
 				setError("");
@@ -185,7 +211,7 @@ function App(props) {
 					<ContactPage
 						search={search}
 						setSearch={({ target }) => setSearch(target.value)}
-						contacts={shownContacts}
+						contacts={contacts}
 						loading={loading}
 						logout={handleLogout}
 					/>
@@ -194,7 +220,7 @@ function App(props) {
 			<Route
 				exact
 				path="/contacts/add"
-				render={() => (
+				render={(props) => (
 					<AddForm
 						contact={contact}
 						setContact={setContact}
@@ -212,4 +238,4 @@ function App(props) {
 	);
 }
 
-export default App;
+export default withRouter(App);
