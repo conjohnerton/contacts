@@ -41,6 +41,7 @@ function App(props) {
 					const userData = await getContacts(user.token);
 					setUser(user);
 					setContacts(userData.contacts);
+					setShownContacts(userData.contacts);
 				}
 			} catch (err) {
 				alert(err);
@@ -50,13 +51,13 @@ function App(props) {
 	}, []);
 
 	// sets shown contacts on search change
-	// useEffect(() => {
-	// 	setShownContacts(
-	// 		contacts.filter((contact) =>
-	// 			contact.name.toUpperCase().includes(search.toUpperCase())
-	// 		)
-	// 	);
-	// }, [search]);
+	useEffect(() => {
+		setShownContacts(
+			contacts.filter((contact) =>
+				contact.name.toUpperCase().includes(search.toUpperCase())
+			)
+		);
+	}, [search]);
 
 	// gets user response from given data and sets current user or sets error message
 	const handleLogin = async (event) => {
@@ -211,7 +212,7 @@ function App(props) {
 					<ContactPage
 						search={search}
 						setSearch={({ target }) => setSearch(target.value)}
-						contacts={contacts}
+						contacts={shownContacts}
 						loading={loading}
 						logout={handleLogout}
 					/>
