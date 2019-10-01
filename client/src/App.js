@@ -75,7 +75,12 @@ function App(props) {
 			// saves new user to localStorage
 			window.localStorage.setItem("contactAppUser", JSON.stringify(user));
 
-			setUser(user.user);
+			setUser({
+				token: user.token,
+				email: user.user.email,
+				id: user.user.id
+			});
+
 			setContacts(user.user.contacts);
 			setEmail("");
 			setPassword("");
@@ -144,7 +149,7 @@ function App(props) {
 			const didAddUser = await addOne(contact, user.token);
 
 			if (didAddUser.success) {
-				setContacts(contacts.concat(contact));
+				setContacts(contacts.concat({ ...contact, id: didAddUser.id }));
 				setContact({});
 				props.history.push("/contacts");
 				return;
@@ -205,7 +210,7 @@ function App(props) {
 			const didDeleteContact = await deleteContact(id, user.token);
 
 			if (didDeleteContact.success) {
-				setContacts(contacts.filter((c) => c.id != id));
+				setContacts(contacts.filter((c) => c.id !== id));
 			}
 		} catch (err) {
 			setError("We couldn't delete that honey, try again later!");
@@ -217,7 +222,7 @@ function App(props) {
 
 	function hasIncompleteInput(email, password) {
 		if (email === "" || password === "") {
-			setError("Enter both an email and password... Thanks! :)");
+			setError("Enter both an email and password... K Thanks! :)");
 			setTimeout(() => setError(""), 5000);
 			return true;
 		}

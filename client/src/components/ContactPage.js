@@ -31,7 +31,7 @@ const ContactPage = (props) => {
 							<Popup
 								trigger={
 									<Icon
-										name="sticky note "
+										name="sticky note"
 										style={{
 											float: "right",
 											borderRadius: "10px",
@@ -40,7 +40,7 @@ const ContactPage = (props) => {
 										}}
 										circular
 										inverted
-										color="teal"
+										color="yellow"
 									/>
 								}
 								content={data.note}

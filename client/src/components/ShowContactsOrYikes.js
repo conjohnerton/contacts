@@ -10,12 +10,12 @@ const ShowsContactsOrYikes = ({ shown }) => {
 					size="small"
 					style={{ display: "flex", alignItems: "center" }}
 				>
-					<Label size="big">Boo!</Label>
+					<Label size="big">No contacky-wackies to show here!</Label>
 					<img
 						src={doodle}
 						alt="Doodle Bob, from SpongeBob Squarepants, pointing to 'Yikes, it appears that there are no contacts!'."
 					/>
-					<Label size="big">No contacky-wackies here!</Label>
+					<Label size="big">Go make some friends!</Label>
 				</Header>
 			);
 

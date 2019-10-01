@@ -32,7 +32,7 @@ router.post("/", auth, async (req, res) => {
 		// push contact to user, save user, then return the thing
 		user.contacts.push(contact.id);
 		await user.save();
-		res.json({ success: true });
+		res.json({ id: contact.id, success: true });
 	} catch (exception) {
 		res.json({ exception, success: false });
 	}

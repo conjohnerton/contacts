@@ -1,12 +1,5 @@
-import React, { useState, useEffect } from "react";
-import {
-	Button,
-	Form,
-	Grid,
-	Header,
-	Message,
-	Segment
-} from "semantic-ui-react";
+import React from "react";
+import { Button, Form, Grid, Header, Segment } from "semantic-ui-react";
 import "../styles/Form.css";
 
 const AddForm = ({ contact, handleContactChange, addContact, children }) => {
